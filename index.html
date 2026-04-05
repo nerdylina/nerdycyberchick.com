@@ -314,13 +314,14 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 300px;
-      height: 90%;
+      width: 320px;
+      height: 95%;
       object-fit: cover;
       object-position: top center;
-      border-radius: 160px 160px 0 0;
-      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      border-radius: 180px 180px 0 0;
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      display: block;
     }
 
     .float-badge {
@@ -572,16 +573,21 @@
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
-    .hero-title { animation: fadeUp 0.6s ease 0.25s both; }
-    .hero-sub { animation: fadeUp 0.6s ease 0.4s both; }
-    .hero-tags { animation: fadeUp 0.6s ease 0.5s both; }
-    .hero-btns { animation: fadeUp 0.6s ease 0.6s both; }
-    .avatar-img { animation: fadeUp 0.8s ease 0.3s both; }
+    .anim { opacity: 0; }
+    .anim.go { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+    .anim:nth-child(1) { animation-delay: 0.1s; }
+    .anim:nth-child(2) { animation-delay: 0.25s; }
+    .anim:nth-child(3) { animation-delay: 0.4s; }
+    .anim:nth-child(4) { animation-delay: 0.52s; }
+    .anim:nth-child(5) { animation-delay: 0.62s; }
+
+    .avatar-img { opacity: 0; transition: opacity 0.8s ease 0.3s; }
+    .avatar-img.loaded { opacity: 1; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -620,16 +626,16 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-left">
-    <div class="hero-eyebrow">Senior Infrastructure &amp; Systems Engineer</div>
-    <h1 class="hero-title">
+    <div class="hero-eyebrow anim">Senior Infrastructure &amp; Systems Engineer</div>
+    <h1 class="hero-title anim">
       I <span class="t">Build</span> &amp;<br>
       <span class="p">Secure</span> Networks.<br>
       <span class="sm">Then document them too.</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub anim">
       MSP lead engineer for 30+ organizations across commercial, education, and nonprofit sectors. M365, Azure, SonicWall, macOS, structured cabling — if it runs on a network, I've touched it. And if something's in there that shouldn't be, I find it and clean it out.
     </p>
-    <div class="hero-tags">
+    <div class="hero-tags anim">
       <span class="tag">Microsoft 365</span>
       <span class="tag">Intune + ABM</span>
       <span class="tag b">Azure / Entra ID</span>
@@ -640,7 +646,7 @@
       <span class="tag pk">Project Lead</span>
       <span class="tag r">Threat Hunter</span>
     </div>
-    <div class="hero-btns">
+    <div class="hero-btns anim">
       <a href="#portfolio" class="btn-primary">view my work</a>
       <a href="#about" class="btn-secondary">about me</a>
     </div>
@@ -758,11 +764,24 @@
   <div class="footer-logo">nerdy cyber chick</div>
   <ul class="footer-links">
     <li><a href="https://linkedin.com/in/karolina-o-connor" target="_blank">LinkedIn</a></li>
-    <li><a href="mailto:karolina@nerdycyberchick.com">Email</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#8ce7edfee3e0e5e2edcce2e9fee8f5eff5eee9feefe4e5efe7a2efe3e1">Email</a></li>
     <li><a href="#">Resume</a></li>
   </ul>
   <div class="footer-copy">© 2026 nerdycyberchick.com</div>
 </footer>
 
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const anims = document.querySelectorAll('.anim');
+    anims.forEach((el, i) => {
+      setTimeout(() => el.classList.add('go'), 100 + i * 140);
+    });
+    const avatar = document.querySelector('.avatar-img');
+    if (avatar) {
+      if (avatar.complete) { avatar.classList.add('loaded'); }
+      else { avatar.addEventListener('load', () => avatar.classList.add('loaded')); }
+    }
+  });
+</script>
 </body>
 </html>
