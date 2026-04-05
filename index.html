@@ -130,7 +130,7 @@
       position: relative;
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 480px;
+      grid-template-columns: 1fr;
       padding-top: 64px;
       overflow: hidden;
     }
@@ -138,10 +138,10 @@
     .hero-server-bg {
       position: absolute;
       inset: 0;
-      background-image: url('dark_servers.jpg');
+      background-image: url('hero_girl2.png');
       background-size: cover;
-      background-position: center right;
-      opacity: 0.07;
+      background-position: center center;
+      opacity: 0.55;
       z-index: 0;
     }
 
@@ -282,14 +282,7 @@
     .btn-secondary:hover { border-color: rgba(255,255,255,0.35); }
 
     /* ── HERO RIGHT / AVATAR ── */
-    .hero-right {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      overflow: hidden;
-    }
+    .hero-right { display: none; }
 
     .avatar-wrap {
       position: relative;
