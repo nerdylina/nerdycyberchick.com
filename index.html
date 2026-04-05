@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nerdy Cyber Chick | Senior Infrastructure & Systems Engineer</title>
+  <meta name="description" content="Senior Infrastructure & Systems Engineer. M365, Azure, Intune, SonicWall, macOS, threat hunting. MSP lead for 30+ organizations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #00c8dc;
+      --teal-dim: rgba(0,200,220,0.12);
+      --blue: #3c8cff;
+      --blue-dim: rgba(60,140,255,0.1);
+      --purple: #c060ff;
+      --purple-dim: rgba(192,96,255,0.1);
+      --pink: #ff50a0;
+      --pink-dim: rgba(255,80,160,0.1);
+      --red: #ff3c50;
+      --red-dim: rgba(255,60,80,0.08);
+      --bg: #080d1a;
+      --bg2: #0d1525;
+      --bg3: #111c2e;
+      --text: #f0f0f8;
+      --muted: #8892aa;
+      --border: rgba(0,200,220,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── GRID LINES ── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,220,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,220,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(8,13,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 7px 18px;
+      border-radius: 4px;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--purple-dim);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      padding-top: 64px;
+      overflow: hidden;
+    }
+
+    .hero-server-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('dark_servers.jpg');
+      background-size: cover;
+      background-position: center right;
+      opacity: 0.07;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(8,13,26,0.98) 0%,
+        rgba(8,13,26,0.92) 45%,
+        rgba(8,13,26,0.6) 70%,
+        rgba(8,13,26,0.4) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 80px;
+      gap: 24px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: var(--teal);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--teal);
+    }
+
+    .hero-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .hero-title .t { color: var(--teal); }
+    .hero-title .p { color: var(--purple); }
+    .hero-title .sm {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 400;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      display: block;
+      margin-top: 6px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,200,220,0.3);
+      color: var(--teal);
+      background: var(--teal-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .tag.b { border-color: rgba(60,140,255,0.3); color: var(--blue); background: var(--blue-dim); }
+    .tag.p { border-color: rgba(192,96,255,0.3); color: var(--purple); background: var(--purple-dim); }
+    .tag.pk { border-color: rgba(255,80,160,0.3); color: var(--pink); background: var(--pink-dim); }
+    .tag.r { border-color: rgba(255,60,80,0.35); color: var(--red); background: var(--red-dim); font-weight: 500; }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 4px;
+      background: var(--teal);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-secondary {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.35); }
+
+    /* ── HERO RIGHT / AVATAR ── */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-top: 40px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 340px;
+      height: calc(100vh - 104px);
+      max-height: 700px;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(0,200,220,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .avatar-img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 90%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 160px 160px 0 0;
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+
+    .float-badge {
+      position: absolute;
+      background: rgba(8,13,26,0.92);
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .fb1 { border: 1px solid rgba(0,200,220,0.3); color: var(--teal); top: 80px; right: 0; animation-delay: 0s; }
+    .fb2 { border: 1px solid rgba(192,96,255,0.3); color: var(--purple); top: 180px; left: -10px; animation-delay: 0.8s; }
+    .fb3 { border: 1px solid rgba(60,140,255,0.3); color: var(--blue); bottom: 200px; right: -10px; animation-delay: 1.4s; }
+    .fb4 { border: 1px solid rgba(255,60,80,0.3); color: var(--red); bottom: 140px; left: 0; animation-delay: 0.4s; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,21,37,0.8);
+    }
+
+    .stat {
+      padding: 28px 32px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-num.t { color: var(--teal); }
+    .stat-num.b { color: var(--blue); }
+    .stat-num.p { color: var(--purple); }
+    .stat-num.pk { color: var(--pink); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── THREAT BANNER ── */
+    .threat-banner {
+      position: relative;
+      z-index: 2;
+      margin: 40px 80px 0;
+      padding: 16px 24px;
+      border: 1px solid rgba(255,60,80,0.2);
+      border-radius: 6px;
+      background: var(--red-dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .threat-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .threat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .threat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .threat-text {
+      font-size: 14px;
+      color: #cc4455;
+      line-height: 1.6;
+    }
+
+    .threat-text strong { color: var(--red); font-weight: 500; }
+
+    /* ── AI BANNER ── */
+    .ai-banner {
+      position: relative;
+      z-index: 2;
+      margin: 16px 80px 0;
+      padding: 14px 24px;
+      border: 1px solid rgba(60,140,255,0.2);
+      border-radius: 6px;
+      background: var(--blue-dim);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ai-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .ai-text {
+      font-size: 13px;
+      color: #2a5599;
+      line-height: 1.5;
+    }
+
+    .ai-text strong { color: var(--blue); font-weight: 500; }
+
+    /* ── SKILLS ── */
+    .skills-section {
+      position: relative;
+      z-index: 2;
+      padding: 48px 80px 60px;
+    }
+
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .skill-group {}
+
+    .skill-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: rgba(136,146,170,0.5);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #aab;
+    }
+
+    .chip.t { background: rgba(0,200,220,0.07); border-color: rgba(0,200,220,0.18); color: var(--teal); }
+    .chip.b { background: rgba(60,140,255,0.07); border-color: rgba(60,140,255,0.18); color: var(--blue); }
+    .chip.p { background: rgba(192,96,255,0.07); border-color: rgba(192,96,255,0.18); color: var(--purple); }
+    .chip.pk { background: rgba(255,80,160,0.07); border-color: rgba(255,80,160,0.18); color: var(--pink); }
+    .chip.r { background: rgba(255,60,80,0.07); border-color: rgba(255,60,80,0.18); color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 32px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--teal); }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(136,146,170,0.4);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+    .hero-title { animation: fadeUp 0.6s ease 0.25s both; }
+    .hero-sub { animation: fadeUp 0.6s ease 0.4s both; }
+    .hero-tags { animation: fadeUp 0.6s ease 0.5s both; }
+    .hero-btns { animation: fadeUp 0.6s ease 0.6s both; }
+    .avatar-img { animation: fadeUp 0.8s ease 0.3s both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 32px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .threat-banner, .ai-banner, .skills-section { margin-left: 32px; margin-right: 32px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">nerdy cyber chick</a>
+  <ul class="nav-links">
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#portfolio">portfolio</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">view resume</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-server-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">Senior Infrastructure &amp; Systems Engineer</div>
+    <h1 class="hero-title">
+      I <span class="t">Build</span> &amp;<br>
+      <span class="p">Secure</span> Networks.<br>
+      <span class="sm">Then document them too.</span>
+    </h1>
+    <p class="hero-sub">
+      MSP lead engineer for 30+ organizations across commercial, education, and nonprofit sectors. M365, Azure, SonicWall, macOS, structured cabling — if it runs on a network, I've touched it. And if something's in there that shouldn't be, I find it and clean it out.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Microsoft 365</span>
+      <span class="tag">Intune + ABM</span>
+      <span class="tag b">Azure / Entra ID</span>
+      <span class="tag b">Copilot 365</span>
+      <span class="tag p">SonicWall + Secure Edge</span>
+      <span class="tag p">macOS</span>
+      <span class="tag pk">Structured Cabling</span>
+      <span class="tag pk">Project Lead</span>
+      <span class="tag r">Threat Hunter</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-primary">view my work</a>
+      <a href="#about" class="btn-secondary">about me</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="avatar-wrap">
+      <div class="avatar-glow"></div>
+      <img src="avatar.jpg" alt="Karolina O'Connor - Nerdy Cyber Chick" class="avatar-img" />
+      <div class="float-badge fb1">M365 + Copilot</div>
+      <div class="float-badge fb2">macOS + ABM</div>
+      <div class="float-badge fb3">30+ clients</div>
+      <div class="float-badge fb4">threat hunter</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num t">30+</div>
+    <div class="stat-label">client organizations</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num b">7+</div>
+    <div class="stat-label">years experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num p">100+</div>
+    <div class="stat-label">environments managed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num pk">BS</div>
+    <div class="stat-label">cybersecurity, valedictorian</div>
+  </div>
+</div>
+
+<!-- THREAT BANNER -->
+<div class="threat-banner">
+  <div class="threat-indicator">
+    <div class="threat-dot"></div>
+    <div class="threat-label">Active</div>
+  </div>
+  <p class="threat-text">
+    <strong>Threat investigation &amp; remediation</strong> — I don't just monitor alerts. I dig in, trace the path, contain the damage, and clean up the mess. End to end.
+  </p>
+</div>
+
+<!-- AI BANNER -->
+<div class="ai-banner">
+  <div class="ai-dot"></div>
+  <p class="ai-text">
+    <strong>Microsoft Copilot 365</strong> — licensed, deployed, and actively enabling clients. Attending Ingram Micro / Microsoft Modern Work training, Atlanta, May 2026.
+  </p>
+</div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-eyebrow">core stack</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">Cloud &amp; Identity</div>
+      <div class="chips">
+        <span class="chip t">Microsoft 365</span>
+        <span class="chip t">Azure / Entra ID</span>
+        <span class="chip t">Intune</span>
+        <span class="chip t">Apple Business Manager</span>
+        <span class="chip b">Copilot 365</span>
+        <span class="chip t">Exchange Online</span>
+        <span class="chip t">SharePoint</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Security &amp; Threat</div>
+      <div class="chips">
+        <span class="chip r">Threat Hunting</span>
+        <span class="chip r">Incident Remediation</span>
+        <span class="chip r">RocketCyber SOC</span>
+        <span class="chip r">Kaseya EDR</span>
+        <span class="chip r">INKY!</span>
+        <span class="chip r">BullPhish ID</span>
+        <span class="chip r">Sophos MDR</span>
+        <span class="chip r">VulScan</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Networking</div>
+      <div class="chips">
+        <span class="chip p">SonicWall</span>
+        <span class="chip p">Secure Edge VPN</span>
+        <span class="chip p">LAN / WAN</span>
+        <span class="chip p">Switching</span>
+        <span class="chip p">Wireless Deployments</span>
+        <span class="chip pk">Structured Cabling</span>
+        <span class="chip p">Aruba</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Operations</div>
+      <div class="chips">
+        <span class="chip b">Autotask PSA</span>
+        <span class="chip b">Datto RMM</span>
+        <span class="chip b">ITGlue / NetworkGlue</span>
+        <span class="chip b">Capital Planning</span>
+        <span class="chip b">SOP Development</span>
+        <span class="chip b">Project Management</span>
+        <span class="chip b">VoIP (8×8)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">nerdy cyber chick</div>
+  <ul class="footer-links">
+    <li><a href="https://linkedin.com/in/karolina-o-connor" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:karolina@nerdycyberchick.com">Email</a></li>
+    <li><a href="#">Resume</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 nerdycyberchick.com</div>
+</footer>
+
+</body>
+</html>
