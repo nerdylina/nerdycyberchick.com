@@ -130,7 +130,7 @@
       position: relative;
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr 480px;
       padding-top: 64px;
       overflow: hidden;
     }
@@ -215,8 +215,9 @@
     }
 
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: start;
       gap: 8px;
     }
 
@@ -292,9 +293,9 @@
 
     .avatar-wrap {
       position: relative;
-      width: 340px;
-      height: calc(100vh - 104px);
-      max-height: 700px;
+      width: 420px;
+      height: calc(100vh - 64px);
+      max-height: 780px;
     }
 
     .avatar-glow {
@@ -314,13 +315,13 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 320px;
-      height: 95%;
+      width: 400px;
+      height: 100%;
       object-fit: cover;
       object-position: top center;
-      border-radius: 180px 180px 0 0;
-      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      border-radius: 200px 200px 0 0;
+      mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
       display: block;
     }
 
