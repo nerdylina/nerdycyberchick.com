@@ -702,6 +702,96 @@
       .edu-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
+    /* ── CERT BADGES ── */
+    .badges-section {
+      position: relative;
+      z-index: 2;
+      padding: 48px 80px;
+      border-top: 1px solid var(--border);
+    }
+
+    .badges-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .badge-card {
+      background: rgba(13,21,37,0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .badge-card:hover { border-color: rgba(0,200,220,0.3); }
+
+    .badge-img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .badge-info {}
+    .badge-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .badge-issuer {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .badge-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--teal);
+    }
+
+    .badge-ms {
+      background: rgba(0,114,198,0.08);
+      border: 1px solid rgba(0,114,198,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ms-logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0078d4;
+      width: 72px;
+      text-align: center;
+    }
+
+    .ms-certs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ms-cert-item {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .badges-section { padding: 40px 32px; }
+      .badges-grid { flex-direction: column; }
+    }
+
     /* ── FOOTER ── */
     footer {
       position: relative;
@@ -789,7 +879,7 @@
     <li><a href="#about">about</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
-  <a href="#" class="nav-cta">view resume</a>
+  <a href="Karolina_OConnor_CV_EU.pdf" target="_blank" class="nav-cta">view resume</a>
 </nav>
 
 <!-- HERO -->
@@ -1029,13 +1119,62 @@
   </div>
 </section>
 
+<!-- CERT BADGES -->
+<section class="badges-section">
+  <div class="section-eyebrow">certifications & badges</div>
+  <div class="badges-grid">
+
+    <div class="badge-card">
+      <img src="ITG_Certified_Expert.png" alt="IT Glue Certified Expert" class="badge-img" />
+      <div class="badge-info">
+        <div class="badge-name">Certified Expert — IT Glue</div>
+        <div class="badge-issuer">Kaseya University</div>
+        <div class="badge-date">Issued Oct 2024 · Expires Oct 2026</div>
+      </div>
+    </div>
+
+    <div class="badge-card">
+      <img src="K365_Endpoint_KCA.png" alt="Kaseya 365 Endpoint Certified Administrator" class="badge-img" />
+      <div class="badge-info">
+        <div class="badge-name">Certified Administrator — Kaseya 365 Endpoint</div>
+        <div class="badge-issuer">Kaseya University</div>
+        <div class="badge-date">Issued Oct 2025 · Level 2</div>
+      </div>
+    </div>
+
+    <div class="badge-card">
+      <div style="width:72px;height:72px;background:rgba(0,114,198,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#0078d4;text-align:center;line-height:1.2;">Kaseya<br>365 OPS</span>
+      </div>
+      <div class="badge-info">
+        <div class="badge-name">Certified Administrator — Kaseya 365 OPS</div>
+        <div class="badge-issuer">Kaseya University</div>
+        <div class="badge-date">Issued Oct 2025 · Expires Oct 2027</div>
+      </div>
+    </div>
+
+    <div class="badge-ms">
+      <div class="ms-logo">MS</div>
+      <div class="ms-certs">
+        <div class="badge-name" style="margin-bottom:6px;">Microsoft Certifications</div>
+        <div class="ms-cert-item">MCSA: Windows Server</div>
+        <div class="ms-cert-item">MCP — Microsoft Certified Professional</div>
+        <div class="ms-cert-item">MCITP: Enterprise Administrator</div>
+        <div class="ms-cert-item">MCTS: Windows Server (multiple)</div>
+        <div class="badge-date" style="margin-top:6px;">Flight Academy training in progress · Atlanta, May 2026</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">nerdy cyber chick</div>
   <ul class="footer-links">
     <li><a href="https://linkedin.com/in/karolina-o-connor" target="_blank">LinkedIn</a></li>
     <li><a href="/cdn-cgi/l/email-protection#8ce7edfee3e0e5e2edcce2e9fee8f5eff5eee9feefe4e5efe7a2efe3e1">Email</a></li>
-    <li><a href="#">Resume</a></li>
+    <li><a href="Karolina_OConnor_CV_EU.pdf" target="_blank">Resume</a></li>
   </ul>
   <div class="footer-copy">© 2026 nerdycyberchick.com</div>
 </footer>
