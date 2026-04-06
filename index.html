@@ -520,6 +520,188 @@
     .chip.pk { background: rgba(255,80,160,0.07); border-color: rgba(255,80,160,0.18); color: var(--pink); }
     .chip.r { background: rgba(255,60,80,0.07); border-color: rgba(255,60,80,0.18); color: var(--red); }
 
+    /* ── EXPERIENCE ── */
+    .experience-section {
+      position: relative;
+      z-index: 2;
+      padding: 60px 80px;
+      border-top: 1px solid var(--border);
+    }
+
+    .exp-item { margin-bottom: 48px; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      gap: 24px;
+    }
+
+    .exp-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .exp-org {
+      font-size: 14px;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .exp-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,200,220,0.3);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .exp-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .etag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      background: rgba(0,200,220,0.06);
+      border: 1px solid rgba(0,200,220,0.15);
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+
+    .exp-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 48px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-section {
+      position: relative;
+      z-index: 2;
+      padding: 60px 80px;
+      border-top: 1px solid var(--border);
+      background: rgba(13,21,37,0.5);
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .edu-degree {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-size: 14px;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .edu-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .edu-awards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .award-badge {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      background: rgba(192,96,255,0.08);
+      border: 1px solid rgba(192,96,255,0.2);
+      color: var(--purple);
+    }
+
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .cert-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cert-dot.t { background: var(--teal); }
+    .cert-dot.b { background: var(--blue); }
+    .cert-dot.p { background: var(--purple); }
+    .cert-dot.pk { background: var(--pink); }
+
+    /* ── RESPONSIVE ADDITIONS ── */
+    @media (max-width: 900px) {
+      .experience-section, .edu-section { padding: 40px 32px; }
+      .exp-header { flex-direction: column; gap: 8px; }
+      .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
     /* ── FOOTER ── */
     footer {
       position: relative;
@@ -744,6 +926,104 @@
         <span class="chip b">SOP Development</span>
         <span class="chip b">Project Management</span>
         <span class="chip b">VoIP (8×8)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="section-eyebrow">experience</div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div class="exp-left">
+        <div class="exp-title">Senior Infrastructure / Systems Engineer</div>
+        <div class="exp-org">Smart Computing Solutions, Inc. <span class="exp-type">MSP</span></div>
+      </div>
+      <div class="exp-date">March 2023 – Present</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Design, build, and operate Microsoft 365 and Azure environments from greenfield through production — including domain configuration, identity architecture, security hardening, and endpoint management.</li>
+      <li>Serve as lead engineer and primary technical authority for approximately 30 client organizations across commercial, education, and nonprofit sectors.</li>
+      <li>Administer Windows and macOS environments at scale, including macOS-only organizations using Apple Business Manager and Microsoft Intune.</li>
+      <li>Design, scope, quote, and deliver infrastructure projects including office relocations, structured cabling, network builds, wireless deployments, and server upgrades.</li>
+      <li>Serve as project manager for all infrastructure initiatives — coordinating vendors, managing timelines, and delegating tasks to engineering teams.</li>
+      <li>Manage all technical licensing renewals and subscription contracts across 100+ client environments — including M365, SonicWall, Datto, Adobe, Axis Camera Station, Dell PowerEdge/PowerStore, Exacq, and all Ingram Micro subscription products.</li>
+      <li>Manage capital planning, asset inventories, hardware replacement schedules, and lifecycle budgeting for assigned client environments; frequently assist other engineers with inventory and annual contract spreadsheets across the broader client base.</li>
+      <li>Perform threat investigation and incident remediation — tracing attack paths, containing damage, and restoring secure operations end to end.</li>
+      <li>Develop and maintain SOPs, technical documentation, and operational standards using ITGlue and NetworkGlue.</li>
+      <li>Mentor junior engineers and oversee task delegation and quality control.</li>
+    </ul>
+    <div class="exp-tags">
+      <span class="etag">M365</span><span class="etag">Azure</span><span class="etag">Intune</span>
+      <span class="etag">macOS + ABM</span><span class="etag">SonicWall</span><span class="etag">Threat Hunting</span>
+      <span class="etag">Project Management</span><span class="etag">Structured Cabling</span>
+    </div>
+  </div>
+
+  <div class="exp-divider"></div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div class="exp-left">
+        <div class="exp-title">Systems Engineer</div>
+        <div class="exp-org">Livanta, LLC <span class="exp-type">Healthcare / Federal</span></div>
+      </div>
+      <div class="exp-date">August 2018 – September 2020</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Administered LAN/WAN infrastructure, Windows Server environments, Active Directory, and backup systems within a healthcare-focused, federally regulated organization.</li>
+      <li>Ensured compliance with federal IT and security standards across all managed systems.</li>
+      <li>Managed server upgrades, patching, and virtualization platforms including Hyper-V and VMware.</li>
+      <li>Coordinated vendor relationships, procurement, and IT resource management.</li>
+      <li>Contributed to disaster recovery planning and internal application support initiatives.</li>
+    </ul>
+    <div class="exp-tags">
+      <span class="etag">Windows Server</span><span class="etag">Active Directory</span>
+      <span class="etag">Hyper-V</span><span class="etag">VMware</span><span class="etag">Federal Compliance</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section class="edu-section" id="about">
+  <div class="edu-grid">
+    <div class="edu-block">
+      <div class="section-eyebrow">education</div>
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Science — Cybersecurity</div>
+        <div class="edu-school">Full Sail University</div>
+        <div class="edu-meta">2020 – 2023</div>
+        <div class="edu-awards">
+          <span class="award-badge">🏆 Valedictorian</span>
+          <span class="award-badge">⭐ Master's Achievement Award</span>
+        </div>
+      </div>
+    </div>
+    <div class="edu-block">
+      <div class="section-eyebrow">certifications</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-dot t"></div>
+          <div>MCSA: Windows Server</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot b"></div>
+          <div>Microsoft Certified Professional (MCP)</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot p"></div>
+          <div>MCITP: Enterprise Administrator</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot pk"></div>
+          <div>MCTS: Windows Server (multiple)</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot t"></div>
+          <div>Kaseya Certified Administrator</div>
+        </div>
       </div>
     </div>
   </div>
