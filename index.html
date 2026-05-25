@@ -164,10 +164,10 @@
 
     /* ── HERO ── */
     .hero { position:relative; min-height:calc(100vh - 64px); display:flex; flex-direction:column; }
-    .hero-bg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.72; z-index:0; }
+    .hero-bg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.92; z-index:0; filter:saturate(1.25) contrast(1.08); }
     .hero-overlay {
       position:absolute; inset:0; z-index:1;
-      background: linear-gradient(105deg, rgba(8,13,26,0.97) 0%, rgba(8,13,26,0.88) 38%, rgba(8,13,26,0.55) 68%, rgba(8,13,26,0.25) 100%);
+      background: linear-gradient(105deg, rgba(8,13,26,0.93) 0%, rgba(8,13,26,0.78) 35%, rgba(8,13,26,0.38) 62%, rgba(8,13,26,0.10) 100%);
     }
     .hero-content {
       position:relative; z-index:2; display:flex; flex-direction:column;
@@ -361,8 +361,8 @@
       margin-bottom: 48px;
       background: linear-gradient(135deg, #130a28 0%, #080d1a 60%);
     }
-    .about-hero-img { position:absolute; inset:0; background-size:cover; background-position:center top; opacity:0.55; }
-    .about-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,13,26,0.9) 0%, rgba(8,13,26,0.4) 100%); }
+    .about-hero-img { position:absolute; inset:0; background-size:cover; background-position:center center; opacity:0.82; filter:saturate(1.2); }
+    .about-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,13,26,0.88) 0%, rgba(8,13,26,0.55) 45%, rgba(8,13,26,0.2) 100%); }
     .about-hero-content { position:relative; z-index:2; padding:40px 48px; height:100%; display:flex; flex-direction:column; justify-content:center; gap:12px; }
     .about-hero-name { font-family:'Rajdhani',sans-serif; font-size:36px; font-weight:700; color:var(--text); }
     .about-hero-role { font-size:14px; color:var(--teal); }
@@ -1040,7 +1040,7 @@
 
     // About page hero image — swap 'about-hero.jpg' with whatever you want
     const aboutBg = document.getElementById('aboutHeroBg');
-    const aboutImgs = ['about-hero.jpg','about-hero.jpeg','about-hero.png'];
+    const aboutImgs = ['CyberBrainGirl.png','about-hero.jpg','about-hero.jpeg','about-hero.png'];
     let aboutSet = false;
     const tryAbout = i => {
       if (i >= aboutImgs.length || aboutSet) return;
