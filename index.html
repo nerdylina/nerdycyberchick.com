@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nerdy Cyber Chick | Senior Infrastructure & Systems Engineer</title>
-  <meta name="description" content="Senior Infrastructure & Systems Engineer. M365, Azure, Intune, SonicWall, macOS, threat hunting. MSP lead for 30+ organizations." />
+  <meta name="description" content="Senior Infrastructure & Systems Engineer. Microsoft 365, Azure/Entra ID, Intune, SonicWall, macOS, threat investigation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -29,7 +29,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -121,9 +120,7 @@
       transition: all 0.2s;
     }
 
-    .nav-cta:hover {
-      background: var(--purple-dim);
-    }
+    .nav-cta:hover { background: var(--purple-dim); }
 
     /* ── HERO ── */
     .hero {
@@ -138,7 +135,7 @@
     .hero-server-bg {
       position: absolute;
       inset: 0;
-      background-image: url('herogirl2.png');
+      background-image: none;
       background-size: cover;
       background-position: 25% center;
       opacity: 0.75;
@@ -150,10 +147,10 @@
       inset: 0;
       background: linear-gradient(
         105deg,
-        rgba(8,13,26,0.92) 0%,
-        rgba(8,13,26,0.75) 40%,
-        rgba(8,13,26,0.3) 70%,
-        rgba(8,13,26,0.15) 100%
+        rgba(8,13,26,0.95) 0%,
+        rgba(8,13,26,0.82) 40%,
+        rgba(8,13,26,0.45) 70%,
+        rgba(8,13,26,0.25) 100%
       );
       z-index: 1;
     }
@@ -211,7 +208,7 @@
       font-size: 15px;
       color: var(--muted);
       line-height: 1.8;
-      max-width: 480px;
+      max-width: 520px;
     }
 
     .hero-tags {
@@ -281,62 +278,6 @@
 
     .btn-secondary:hover { border-color: rgba(255,255,255,0.35); }
 
-    /* ── HERO RIGHT / AVATAR ── */
-    .hero-right { display: none; }
-
-    .avatar-wrap {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 64px);
-    }
-
-    .avatar-glow {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 300px;
-      background: radial-gradient(ellipse, rgba(0,200,220,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .avatar-img {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: top center;
-      display: block;
-    }
-
-    .float-badge {
-      position: absolute;
-      background: rgba(8,13,26,0.92);
-      border-radius: 6px;
-      padding: 7px 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      white-space: nowrap;
-      backdrop-filter: blur(8px);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .fb1 { border: 1px solid rgba(0,200,220,0.3); color: var(--teal); top: 80px; right: 0; animation-delay: 0s; }
-    .fb2 { border: 1px solid rgba(192,96,255,0.3); color: var(--purple); top: 180px; left: -10px; animation-delay: 0.8s; }
-    .fb3 { border: 1px solid rgba(60,140,255,0.3); color: var(--blue); bottom: 200px; right: -10px; animation-delay: 1.4s; }
-    .fb4 { border: 1px solid rgba(255,60,80,0.3); color: var(--red); bottom: 140px; left: 0; animation-delay: 0.4s; }
-
     /* ── STATS BAR ── */
     .stats-bar {
       position: relative;
@@ -374,7 +315,7 @@
       letter-spacing: 0.02em;
     }
 
-    /* ── THREAT BANNER ── */
+    /* ── BANNERS ── */
     .threat-banner {
       position: relative;
       z-index: 2;
@@ -425,7 +366,6 @@
 
     .threat-text strong { color: var(--red); font-weight: 500; }
 
-    /* ── AI BANNER ── */
     .ai-banner {
       position: relative;
       z-index: 2;
@@ -455,12 +395,16 @@
 
     .ai-text strong { color: var(--blue); font-weight: 500; }
 
-    /* ── SKILLS ── */
-    .skills-section {
+    /* ── SECTIONS ── */
+    .skills-section, .experience-section, .edu-section, .badges-section {
       position: relative;
       z-index: 2;
-      padding: 48px 80px 60px;
     }
+
+    .skills-section { padding: 48px 80px 60px; }
+    .experience-section { padding: 60px 80px; border-top: 1px solid var(--border); }
+    .edu-section { padding: 60px 80px; border-top: 1px solid var(--border); background: rgba(13,21,37,0.5); }
+    .badges-section { padding: 48px 80px; border-top: 1px solid var(--border); }
 
     .section-eyebrow {
       font-family: 'JetBrains Mono', monospace;
@@ -481,14 +425,8 @@
       background: var(--border);
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .skill-group {}
-
+    /* Skills grid */
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .skill-group-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
@@ -497,13 +435,7 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip {
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
@@ -513,355 +445,82 @@
       border: 1px solid rgba(255,255,255,0.07);
       color: #aab;
     }
-
     .chip.t { background: rgba(0,200,220,0.07); border-color: rgba(0,200,220,0.18); color: var(--teal); }
     .chip.b { background: rgba(60,140,255,0.07); border-color: rgba(60,140,255,0.18); color: var(--blue); }
     .chip.p { background: rgba(192,96,255,0.07); border-color: rgba(192,96,255,0.18); color: var(--purple); }
     .chip.pk { background: rgba(255,80,160,0.07); border-color: rgba(255,80,160,0.18); color: var(--pink); }
     .chip.r { background: rgba(255,60,80,0.07); border-color: rgba(255,60,80,0.18); color: var(--red); }
 
-    /* ── EXPERIENCE ── */
-    .experience-section {
-      position: relative;
-      z-index: 2;
-      padding: 60px 80px;
-      border-top: 1px solid var(--border);
-    }
-
+    /* Experience bullets */
     .exp-item { margin-bottom: 48px; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; gap: 24px; }
+    .exp-title { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .exp-org { font-size: 14px; color: var(--teal); display: flex; align-items: center; gap: 10px; }
+    .exp-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 3px; border: 1px solid rgba(0,200,220,0.3); color: var(--muted); letter-spacing: 0.08em; }
+    .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; padding-top: 4px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .exp-bullets li { font-size: 14px; color: var(--muted); line-height: 1.7; padding-left: 20px; position: relative; }
+    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--teal); }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .etag { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 3px; background: rgba(0,200,220,0.06); border: 1px solid rgba(0,200,220,0.15); color: var(--teal); letter-spacing: 0.04em; }
+    .exp-divider { height: 1px; background: var(--border); margin-bottom: 48px; }
 
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      gap: 24px;
-    }
+    /* Education */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .edu-degree { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .edu-school { font-size: 14px; color: var(--teal); margin-bottom: 4px; }
+    .edu-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 16px; }
+    .edu-awards { display: flex; flex-wrap: wrap; gap: 8px; }
+    .award-badge { font-size: 12px; padding: 5px 12px; border-radius: 4px; background: rgba(192,96,255,0.08); border: 1px solid rgba(192,96,255,0.2); color: var(--purple); }
 
-    .exp-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .exp-org {
-      font-size: 14px;
-      color: var(--teal);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .exp-type {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 3px;
-      border: 1px solid rgba(0,200,220,0.3);
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-
-    .exp-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      white-space: nowrap;
-      padding-top: 4px;
-    }
-
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .exp-bullets li {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .exp-bullets li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-    }
-
-    .exp-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .etag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      padding: 3px 10px;
-      border-radius: 3px;
-      background: rgba(0,200,220,0.06);
-      border: 1px solid rgba(0,200,220,0.15);
-      color: var(--teal);
-      letter-spacing: 0.04em;
-    }
-
-    .exp-divider {
-      height: 1px;
-      background: var(--border);
-      margin-bottom: 48px;
-    }
-
-    /* ── EDUCATION ── */
-    .edu-section {
-      position: relative;
-      z-index: 2;
-      padding: 60px 80px;
-      border-top: 1px solid var(--border);
-      background: rgba(13,21,37,0.5);
-    }
-
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-
-    .edu-degree {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .edu-school {
-      font-size: 14px;
-      color: var(--teal);
-      margin-bottom: 4px;
-    }
-
-    .edu-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .edu-awards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .award-badge {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 4px;
-      background: rgba(192,96,255,0.08);
-      border: 1px solid rgba(192,96,255,0.2);
-      color: var(--purple);
-    }
-
-    .cert-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .cert-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .cert-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
+    /* Cert list */
+    .cert-list { display: flex; flex-direction: column; gap: 14px; }
+    .cert-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+    .cert-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .cert-dot.t { background: var(--teal); }
     .cert-dot.b { background: var(--blue); }
     .cert-dot.p { background: var(--purple); }
     .cert-dot.pk { background: var(--pink); }
 
-    /* ── RESPONSIVE ADDITIONS ── */
-    @media (max-width: 900px) {
-      .experience-section, .edu-section { padding: 40px 32px; }
-      .exp-header { flex-direction: column; gap: 8px; }
-      .edu-grid { grid-template-columns: 1fr; gap: 40px; }
-    }
-
-    /* ── CERT BADGES ── */
-    .badges-section {
-      position: relative;
-      z-index: 2;
-      padding: 48px 80px;
-      border-top: 1px solid var(--border);
-    }
-
-    .badges-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .badge-card {
-      background: rgba(13,21,37,0.8);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      transition: border-color 0.2s;
-    }
-
+    /* Badges */
+    .badges-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-top: 20px; }
+    .badge-card { background: rgba(13,21,37,0.8); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; transition: border-color 0.2s; }
     .badge-card:hover { border-color: rgba(0,200,220,0.3); }
+    .badge-img { width: 72px; height: 72px; object-fit: contain; border-radius: 8px; }
+    .badge-name { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .badge-issuer { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .badge-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); }
 
-    .badge-img {
-      width: 72px;
-      height: 72px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
+    .badge-ms { background: rgba(0,114,198,0.08); border: 1px solid rgba(0,114,198,0.2); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+    .ms-logo { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: #0078d4; width: 72px; text-align: center; }
+    .ms-certs { display: flex; flex-direction: column; gap: 4px; }
+    .ms-cert-item { font-size: 12px; color: var(--muted); }
 
-    .badge-info {}
-    .badge-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-    .badge-issuer {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-    .badge-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--teal);
-    }
-
-    .badge-ms {
-      background: rgba(0,114,198,0.08);
-      border: 1px solid rgba(0,114,198,0.2);
-      border-radius: 12px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .ms-logo {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: #0078d4;
-      width: 72px;
-      text-align: center;
-    }
-
-    .ms-certs {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .ms-cert-item {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 900px) {
-      .badges-section { padding: 40px 32px; }
-      .badges-grid { flex-direction: column; }
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 2;
-      border-top: 1px solid var(--border);
-      padding: 32px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-logo {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--teal);
-      letter-spacing: 0.05em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    /* Footer */
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 32px 80px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--teal); letter-spacing: 0.05em; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--teal); }
+    .footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(136,146,170,0.4); letter-spacing: 0.06em; }
 
-    .footer-copy {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: rgba(136,146,170,0.4);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .anim { opacity: 0; }
     .anim.go { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-    .anim:nth-child(1) { animation-delay: 0.1s; }
-    .anim:nth-child(2) { animation-delay: 0.25s; }
-    .anim:nth-child(3) { animation-delay: 0.4s; }
-    .anim:nth-child(4) { animation-delay: 0.52s; }
-    .anim:nth-child(5) { animation-delay: 0.62s; }
-
-    .avatar-img { opacity: 0; transition: opacity 0.8s ease 0.3s; }
-    .avatar-img.loaded { opacity: 1; }
-
-    /* ── RESPONSIVE ── */
+    /* Responsive */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
       .hero-left { padding: 60px 32px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .threat-banner, .ai-banner, .skills-section { margin-left: 32px; margin-right: 32px; }
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 32px; }
+      .threat-banner, .ai-banner { margin-left: 32px; margin-right: 32px; }
+      .skills-section, .experience-section, .edu-section, .badges-section, footer { padding-left: 32px; padding-right: 32px; }
+      .exp-header { flex-direction: column; gap: 8px; }
+      .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
@@ -874,17 +533,17 @@
   <a href="#" class="nav-logo">nerdy cyber chick</a>
   <ul class="nav-links">
     <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">experience</a></li>
     <li><a href="#portfolio">portfolio</a></li>
+    <li><a href="#experience">experience</a></li>
     <li><a href="#about">about</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
-  <a href="Karolina_OConnor_CV_EU.pdf" target="_blank" class="nav-cta">view resume</a>
+  <a href="Karolina_OConnor_Cloud_Admin_Resume_v3_Formatted.docx" target="_blank" class="nav-cta">view resume</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-server-bg"></div>
+  <div class="hero-server-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-left">
@@ -895,7 +554,7 @@
       <span class="sm">Then document them too.</span>
     </h1>
     <p class="hero-sub anim">
-      MSP lead engineer for 30+ organizations across commercial, education, and nonprofit sectors. M365, Azure, SonicWall, macOS, structured cabling — if it runs on a network, I've touched it. And if something's in there that shouldn't be, I find it and clean it out.
+      Lead engineer for 30+ organizations across commercial, education, and nonprofit sectors. Microsoft 365, Azure/Entra ID, SonicWall, macOS, structured cabling — if it runs on a network, I've touched it.
     </p>
     <div class="hero-tags anim">
       <span class="tag">Microsoft 365</span>
@@ -913,56 +572,26 @@
       <a href="#about" class="btn-secondary">about me</a>
     </div>
   </div>
-
-  <div class="hero-right">
-    <div class="avatar-wrap">
-      <div class="avatar-glow"></div>
-      <img src="avatar_nb.png" alt="Karolina O'Connor - Nerdy Cyber Chick" class="avatar-img" />
-      <div class="float-badge fb1">M365 + Copilot</div>
-      <div class="float-badge fb2">macOS + ABM</div>
-      <div class="float-badge fb3">30+ clients</div>
-      <div class="float-badge fb4">threat hunter</div>
-    </div>
-  </div>
 </section>
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat">
-    <div class="stat-num t">30+</div>
-    <div class="stat-label">client organizations</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num b">7+</div>
-    <div class="stat-label">years experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num p">100+</div>
-    <div class="stat-label">environments managed</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num pk">BS</div>
-    <div class="stat-label">cybersecurity, valedictorian</div>
-  </div>
+  <div class="stat"><div class="stat-num t">30+</div><div class="stat-label">client organizations</div></div>
+  <div class="stat"><div class="stat-num b">7+</div><div class="stat-label">years experience</div></div>
+  <div class="stat"><div class="stat-num p">100+</div><div class="stat-label">environments managed</div></div>
+  <div class="stat"><div class="stat-num pk">BS</div><div class="stat-label">cybersecurity, valedictorian</div></div>
 </div>
 
 <!-- THREAT BANNER -->
 <div class="threat-banner">
-  <div class="threat-indicator">
-    <div class="threat-dot"></div>
-    <div class="threat-label">Active</div>
-  </div>
-  <p class="threat-text">
-    <strong>Threat investigation &amp; remediation</strong> — I don't just monitor alerts. I dig in, trace the path, contain the damage, and clean up the mess. End to end.
-  </p>
+  <div class="threat-indicator"><div class="threat-dot"></div><div class="threat-label">Active</div></div>
+  <p class="threat-text"><strong>Threat investigation &amp; remediation</strong> — I dig in, trace the path, contain the damage, and clean up the mess. End to end.</p>
 </div>
 
 <!-- AI BANNER -->
 <div class="ai-banner">
   <div class="ai-dot"></div>
-  <p class="ai-text">
-    <strong>Microsoft Copilot 365</strong> — licensed, deployed, and actively enabling clients. Attending Ingram Micro / Microsoft Modern Work training, Atlanta, May 2026.
-  </p>
+  <p class="ai-text"><strong>Microsoft Copilot 365</strong> — licensed and deployed (small scale) and developing Copilot readiness planning.</p>
 </div>
 
 <!-- SKILLS -->
@@ -986,12 +615,9 @@
       <div class="chips">
         <span class="chip r">Threat Hunting</span>
         <span class="chip r">Incident Remediation</span>
-        <span class="chip r">RocketCyber SOC</span>
-        <span class="chip r">Kaseya EDR</span>
-        <span class="chip r">INKY!</span>
-        <span class="chip r">BullPhish ID</span>
-        <span class="chip r">Sophos MDR</span>
-        <span class="chip r">VulScan</span>
+        <span class="chip r">SOC Triage</span>
+        <span class="chip r">EDR</span>
+        <span class="chip r">Email Security</span>
       </div>
     </div>
     <div class="skill-group">
@@ -1001,9 +627,8 @@
         <span class="chip p">Secure Edge VPN</span>
         <span class="chip p">LAN / WAN</span>
         <span class="chip p">Switching</span>
-        <span class="chip p">Wireless Deployments</span>
+        <span class="chip p">Wireless</span>
         <span class="chip pk">Structured Cabling</span>
-        <span class="chip p">Aruba</span>
       </div>
     </div>
     <div class="skill-group">
@@ -1011,13 +636,47 @@
       <div class="chips">
         <span class="chip b">Autotask PSA</span>
         <span class="chip b">Datto RMM</span>
-        <span class="chip b">ITGlue / NetworkGlue</span>
+        <span class="chip b">ITGlue</span>
         <span class="chip b">Capital Planning</span>
-        <span class="chip b">SOP Development</span>
-        <span class="chip b">Project Management</span>
-        <span class="chip b">VoIP (8×8)</span>
+        <span class="chip b">SOPs</span>
+        <span class="chip b">Project Lead</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO (was missing) -->
+<section class="experience-section" id="portfolio">
+  <div class="section-eyebrow">portfolio</div>
+
+  <div class="exp-item">
+    <div class="exp-title">Conditional Access + MFA Troubleshooting</div>
+    <ul class="exp-bullets">
+      <li>Built and maintained Conditional Access policies</li>
+      <li>Resolved MFA/sign-in/session failures across tenants</li>
+      <li>Improved security posture while keeping usability practical</li>
+    </ul>
+    <div class="exp-tags"><span class="etag">Entra ID</span><span class="etag">Conditional Access</span><span class="etag">MFA</span></div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-title">Intune (Windows + macOS) Policy &amp; App Deployment</div>
+    <ul class="exp-bullets">
+      <li>Managed compliance and configuration policies</li>
+      <li>Deployed applications and enforced baselines</li>
+      <li>Supported ABM workflows for macOS environments</li>
+    </ul>
+    <div class="exp-tags"><span class="etag">Intune</span><span class="etag">Windows</span><span class="etag">macOS</span><span class="etag">ABM</span></div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-title">Exchange Online Mail Flow + Domain Protection</div>
+    <ul class="exp-bullets">
+      <li>Configured connectors and transport rules</li>
+      <li>Resolved deliverability and routing issues</li>
+      <li>Implemented DMARC/DKIM/SPF and remediated misconfigs</li>
+    </ul>
+    <div class="exp-tags"><span class="etag">Exchange Online</span><span class="etag">Connectors</span><span class="etag">DMARC/DKIM/SPF</span></div>
   </div>
 </section>
 
@@ -1034,21 +693,16 @@
       <div class="exp-date">March 2023 – Present</div>
     </div>
     <ul class="exp-bullets">
-      <li>Design, build, and operate Microsoft 365 and Azure environments from greenfield through production — including domain configuration, identity architecture, security hardening, and endpoint management.</li>
-      <li>Serve as lead engineer and primary technical authority for approximately 30 client organizations across commercial, education, and nonprofit sectors.</li>
-      <li>Administer Windows and macOS environments at scale, including macOS-only organizations using Apple Business Manager and Microsoft Intune.</li>
-      <li>Design, scope, quote, and deliver infrastructure projects including office relocations, structured cabling, network builds, wireless deployments, and server upgrades.</li>
-      <li>Serve as project manager for all infrastructure initiatives — coordinating vendors, managing timelines, and delegating tasks to engineering teams.</li>
-      <li>Manage all technical licensing renewals and subscription contracts across 100+ client environments — including M365, SonicWall, Datto, Adobe, Axis Camera Station, Dell PowerEdge/PowerStore, Exacq, and all Ingram Micro subscription products.</li>
-      <li>Manage capital planning, asset inventories, hardware replacement schedules, and lifecycle budgeting for assigned client environments; frequently assist other engineers with inventory and annual contract spreadsheets across the broader client base.</li>
-      <li>Perform threat investigation and incident remediation — tracing attack paths, containing damage, and restoring secure operations end to end.</li>
-      <li>Develop and maintain SOPs, technical documentation, and operational standards using ITGlue and NetworkGlue.</li>
-      <li>Mentor junior engineers and oversee task delegation and quality control.</li>
+      <li>Design, build, and operate Microsoft 365 and Azure environments from greenfield through production.</li>
+      <li>Lead engineer for approximately 30 client organizations across commercial, education, and nonprofit sectors.</li>
+      <li>Administer Windows and macOS environments, including ABM + Intune workflows.</li>
+      <li>Deliver infrastructure projects: network builds, wireless deployments, server upgrades, cabling.</li>
+      <li>Perform threat investigation and incident remediation end-to-end.</li>
+      <li>Develop SOPs and documentation (ITGlue / NetworkGlue).</li>
     </ul>
     <div class="exp-tags">
       <span class="etag">M365</span><span class="etag">Azure</span><span class="etag">Intune</span>
       <span class="etag">macOS + ABM</span><span class="etag">SonicWall</span><span class="etag">Threat Hunting</span>
-      <span class="etag">Project Management</span><span class="etag">Structured Cabling</span>
     </div>
   </div>
 
@@ -1063,16 +717,11 @@
       <div class="exp-date">August 2018 – September 2020</div>
     </div>
     <ul class="exp-bullets">
-      <li>Administered LAN/WAN infrastructure, Windows Server environments, Active Directory, and backup systems within a healthcare-focused, federally regulated organization.</li>
-      <li>Ensured compliance with federal IT and security standards across all managed systems.</li>
-      <li>Managed server upgrades, patching, and virtualization platforms including Hyper-V and VMware.</li>
-      <li>Coordinated vendor relationships, procurement, and IT resource management.</li>
-      <li>Contributed to disaster recovery planning and internal application support initiatives.</li>
+      <li>Administered LAN/WAN infrastructure, Windows Server, Active Directory, and backups.</li>
+      <li>Managed server upgrades, patching, and virtualization (Hyper-V / VMware).</li>
+      <li>Supported disaster recovery planning and internal IT operations.</li>
     </ul>
-    <div class="exp-tags">
-      <span class="etag">Windows Server</span><span class="etag">Active Directory</span>
-      <span class="etag">Hyper-V</span><span class="etag">VMware</span><span class="etag">Federal Compliance</span>
-    </div>
+    <div class="exp-tags"><span class="etag">Windows Server</span><span class="etag">Active Directory</span><span class="etag">Hyper-V</span><span class="etag">VMware</span></div>
   </div>
 </section>
 
@@ -1094,26 +743,11 @@
     <div class="edu-block">
       <div class="section-eyebrow">certifications</div>
       <div class="cert-list">
-        <div class="cert-item">
-          <div class="cert-dot t"></div>
-          <div>MCSA: Windows Server</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-dot b"></div>
-          <div>Microsoft Certified Professional (MCP)</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-dot p"></div>
-          <div>MCITP: Enterprise Administrator</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-dot pk"></div>
-          <div>MCTS: Windows Server (multiple)</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-dot t"></div>
-          <div>Kaseya Certified Administrator</div>
-        </div>
+        <div class="cert-item"><div class="cert-dot t"></div><div>MCSA: Windows Server</div></div>
+        <div class="cert-item"><div class="cert-dot b"></div><div>Microsoft Certified Professional (MCP)</div></div>
+        <div class="cert-item"><div class="cert-dot p"></div><div>MCITP: Enterprise Administrator</div></div>
+        <div class="cert-item"><div class="cert-dot pk"></div><div>MCTS: Windows Server (multiple)</div></div>
+        <div class="cert-item"><div class="cert-dot t"></div><div>Kaseya Certified (IT Glue / K365)</div></div>
       </div>
     </div>
   </div>
@@ -1121,11 +755,11 @@
 
 <!-- CERT BADGES -->
 <section class="badges-section">
-  <div class="section-eyebrow">certifications & badges</div>
+  <div class="section-eyebrow">certifications &amp; badges</div>
   <div class="badges-grid">
 
     <div class="badge-card">
-      <img src="ITG_Certified_Expert.png" alt="IT Glue Certified Expert" class="badge-img" />
+      <img id="badgeItgl" src="ITG_Certified_Expert.png" alt="IT Glue Certified Expert" class="badge-img" />
       <div class="badge-info">
         <div class="badge-name">Certified Expert — IT Glue</div>
         <div class="badge-issuer">Kaseya University</div>
@@ -1134,22 +768,11 @@
     </div>
 
     <div class="badge-card">
-      <img src="K365_Endpoint_KCA.png" alt="Kaseya 365 Endpoint Certified Administrator" class="badge-img" />
+      <img id="badgeKca" src="K365%20Endpoint%20KCA.png" alt="Kaseya 365 Endpoint Certified Administrator" class="badge-img" />
       <div class="badge-info">
         <div class="badge-name">Certified Administrator — Kaseya 365 Endpoint</div>
         <div class="badge-issuer">Kaseya University</div>
         <div class="badge-date">Issued Oct 2025 · Level 2</div>
-      </div>
-    </div>
-
-    <div class="badge-card">
-      <div style="width:72px;height:72px;background:rgba(0,114,198,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:#0078d4;text-align:center;line-height:1.2;">Kaseya<br>365 OPS</span>
-      </div>
-      <div class="badge-info">
-        <div class="badge-name">Certified Administrator — Kaseya 365 OPS</div>
-        <div class="badge-issuer">Kaseya University</div>
-        <div class="badge-date">Issued Oct 2025 · Expires Oct 2027</div>
       </div>
     </div>
 
@@ -1161,7 +784,6 @@
         <div class="ms-cert-item">MCP — Microsoft Certified Professional</div>
         <div class="ms-cert-item">MCITP: Enterprise Administrator</div>
         <div class="ms-cert-item">MCTS: Windows Server (multiple)</div>
-        <div class="badge-date" style="margin-top:6px;">Flight Academy training in progress · Atlanta, May 2026</div>
       </div>
     </div>
 
@@ -1169,26 +791,60 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer id="contact">
   <div class="footer-logo">nerdy cyber chick</div>
   <ul class="footer-links">
     <li><a href="https://linkedin.com/in/karolina-o-connor" target="_blank">LinkedIn</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#8ce7edfee3e0e5e2edcce2e9fee8f5eff5eee9feefe4e5efe7a2efe3e1">Email</a></li>
-    <li><a href="Karolina_OConnor_CV_EU.pdf" target="_blank">Resume</a></li>
+    <li><a href="mailto:karolina@nerdycyberchick.com">Email</a></li>
+    <li><a href="Karolina_OConnor_Cloud_Admin_Resume_v3_Formatted.docx" target="_blank">Resume</a></li>
   </ul>
   <div class="footer-copy">© 2026 nerdycyberchick.com</div>
 </footer>
 
 <script>
+  // Simple reveal animation
   window.addEventListener('DOMContentLoaded', () => {
     const anims = document.querySelectorAll('.anim');
-    anims.forEach((el, i) => {
-      setTimeout(() => el.classList.add('go'), 100 + i * 140);
-    });
-    const avatar = document.querySelector('.avatar-img');
-    if (avatar) {
-      if (avatar.complete) { avatar.classList.add('loaded'); }
-      else { avatar.addEventListener('load', () => avatar.classList.add('loaded')); }
+    anims.forEach((el, i) => setTimeout(() => el.classList.add('go'), 100 + i * 140));
+
+    // HERO background fallback chain (no folder refactor required)
+    const hero = document.getElementById('heroBg');
+    const candidates = [
+      'assets/hero/background-main.jpg',
+      'background-main.jpg',
+      'CloudHero.jpeg',
+      'CloudHero.jpg',
+      'herogirl2.png',
+      'hero_girl2.png'
+    ];
+    let set = false;
+    const tryNext = (idx) => {
+      if (idx >= candidates.length || set) return;
+      const img = new Image();
+      img.onload = () => {
+        hero.style.backgroundImage = `url('${candidates[idx]}')`;
+        set = true;
+      };
+      img.onerror = () => tryNext(idx + 1);
+      img.src = candidates[idx];
+    };
+    tryNext(0);
+
+    // Badge fallbacks (handles space/case issues)
+    const itgl = document.getElementById('badgeItgl');
+    if (itgl) {
+      const opts = ['ITG_Certified_Expert.png','ITG_Certified Expert.png','itgl_certified_expert.png','assets/badges/itgl_certified_expert.png'];
+      let i = 0;
+      itgl.onerror = () => { i++; if (i < opts.length) itgl.src = opts[i]; };
+      itgl.src = opts[0];
+    }
+
+    const kca = document.getElementById('badgeKca');
+    if (kca) {
+      const opts = ['K365%20Endpoint%20KCA.png','K365 Endpoint KCA.png','k365_endpoint_kca.png','assets/badges/k365_endpoint_kca.png'];
+      let i = 0;
+      kca.onerror = () => { i++; if (i < opts.length) kca.src = opts[i]; };
+      kca.src = opts[0];
     }
   });
 </script>
