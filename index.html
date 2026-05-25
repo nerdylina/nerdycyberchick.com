@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nerdy Cyber Chick | Senior Infrastructure & Systems Engineer</title>
-  <meta name="description" content="Senior Infrastructure & Systems Engineer. Microsoft 365, Azure/Entra ID, Intune, SonicWall, macOS, threat investigation." />
+  <title>Nerdy Cyber Chick | Cloud & Identity Engineer</title>
+  <meta name="description" content="Senior Cloud & Identity Engineer — Microsoft 365, Entra ID, Intune, SonicWall, Security Operations. 30+ client environments." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -20,6 +20,8 @@
       --pink-dim: rgba(255,80,160,0.1);
       --red: #ff3c50;
       --red-dim: rgba(255,60,80,0.08);
+      --amber: #ffaa00;
+      --amber-dim: rgba(255,170,0,0.1);
       --bg: #080d1a;
       --bg2: #0d1525;
       --bg3: #111c2e;
@@ -29,7 +31,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -38,738 +39,401 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-
     body.modal-open { overflow: hidden; }
 
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.35;
     }
 
     .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,200,220,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,200,220,0.04) 1px, transparent 1px);
+      position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(0,200,220,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,220,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 64px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
       background: rgba(8,13,26,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--teal);
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700;
+      color: var(--teal); letter-spacing: 0.05em; cursor: pointer; text-decoration: none;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 4px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 4px; list-style: none; }
     .nav-links a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      padding: 6px 16px;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      cursor: pointer;
-      display: block;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.04em; padding: 6px 14px;
+      border-radius: 4px; transition: color 0.2s, background 0.2s; cursor: pointer; display: block;
     }
-
-    .nav-links a:hover { color: var(--teal); background: var(--teal-dim); }
-    .nav-links a.active { color: var(--teal); background: var(--teal-dim); }
-
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); background: var(--teal-dim); }
     .nav-cta {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      padding: 7px 18px;
-      border-radius: 4px;
-      border: 1px solid var(--purple);
-      color: var(--purple);
-      background: transparent;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.08em; padding: 7px 18px; border-radius: 4px;
+      border: 1px solid var(--purple); color: var(--purple); background: transparent;
+      cursor: pointer; transition: all 0.2s;
     }
-
     .nav-cta:hover { background: var(--purple-dim); }
 
     /* ── RESUME MODAL ── */
     .resume-modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(8,13,26,0.88);
-      backdrop-filter: blur(8px);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      animation: backdropIn 0.25s ease forwards;
+      display: none; position: fixed; inset: 0;
+      background: rgba(8,13,26,0.88); backdrop-filter: blur(8px);
+      z-index: 500; align-items: center; justify-content: center; padding: 24px;
     }
-
-    .resume-modal-backdrop.open {
-      display: flex;
-    }
-
-    @keyframes backdropIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .resume-modal-backdrop.open { display: flex; animation: backdropIn 0.25s ease forwards; }
+    @keyframes backdropIn { from { opacity:0; } to { opacity:1; } }
 
     .resume-modal {
-      background: var(--bg2);
-      border: 1px solid rgba(0,200,220,0.2);
-      border-radius: 10px;
-      width: 100%;
-      max-width: 860px;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
+      background: var(--bg2); border: 1px solid rgba(0,200,220,0.2); border-radius: 10px;
+      width: 100%; max-width: 860px; max-height: 90vh;
+      display: flex; flex-direction: column;
       animation: modalIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,200,220,0.08);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,200,220,0.06);
     }
-
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    @keyframes modalIn { from { opacity:0; transform:translateY(20px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
 
     .resume-modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 28px;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; border-bottom: 1px solid var(--border); flex-shrink: 0;
     }
-
-    .resume-modal-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      color: var(--teal);
-      text-transform: uppercase;
-    }
-
-    .resume-modal-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .resume-modal-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; color:var(--teal); text-transform:uppercase; }
+    .resume-modal-actions { display:flex; align-items:center; gap:12px; }
     .modal-download-btn {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      padding: 6px 16px;
-      border-radius: 4px;
-      border: 1px solid rgba(192,96,255,0.4);
-      color: var(--purple);
-      background: var(--purple-dim);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
+      font-family:'Rajdhani',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.08em;
+      padding:6px 16px; border-radius:4px; border:1px solid rgba(192,96,255,0.4);
+      color:var(--purple); background:var(--purple-dim); cursor:pointer; text-decoration:none; transition:all 0.2s;
     }
-
-    .modal-download-btn:hover { border-color: var(--purple); }
-
+    .modal-download-btn:hover { border-color:var(--purple); }
     .modal-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      line-height: 1;
-      transition: all 0.2s;
+      width:32px; height:32px; border-radius:4px; border:1px solid var(--border);
+      background:transparent; color:var(--muted); cursor:pointer;
+      display:flex; align-items:center; justify-content:center; font-size:16px; transition:all 0.2s;
     }
+    .modal-close:hover { color:var(--text); border-color:rgba(255,255,255,0.2); }
 
-    .modal-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .resume-modal-body { overflow-y:auto; padding:40px 48px; flex:1; }
+    .resume-modal-body::-webkit-scrollbar { width:4px; }
+    .resume-modal-body::-webkit-scrollbar-thumb { background:rgba(0,200,220,0.2); border-radius:2px; }
 
-    .resume-modal-body {
-      overflow-y: auto;
-      padding: 40px 48px;
-      flex: 1;
-    }
-
-    /* Resume content styles */
-    .resume-modal-body::-webkit-scrollbar { width: 4px; }
-    .resume-modal-body::-webkit-scrollbar-track { background: transparent; }
-    .resume-modal-body::-webkit-scrollbar-thumb { background: rgba(0,200,220,0.2); border-radius: 2px; }
-
-    .res-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
-
-    .res-contact {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      margin-bottom: 4px;
-    }
-
-    .res-contact a { color: var(--teal); text-decoration: none; }
-    .res-contact a:hover { text-decoration: underline; }
-
-    .res-title {
-      font-size: 14px;
-      color: var(--teal);
-      margin-bottom: 28px;
-      font-style: italic;
-    }
-
-    .res-section {
-      margin-bottom: 28px;
-    }
-
+    .res-name { font-family:'Rajdhani',sans-serif; font-size:32px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .res-contact { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.04em; margin-bottom:4px; }
+    .res-contact a { color:var(--teal); text-decoration:none; }
+    .res-role { font-size:14px; color:var(--purple); margin-bottom:28px; font-style:italic; }
+    .res-section { margin-bottom:28px; }
     .res-section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.18em; color:var(--muted);
+      text-transform:uppercase; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);
     }
-
-    .res-section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .res-summary {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .res-skills-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .res-skills-list li {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .res-skills-list li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-      font-size: 14px;
-    }
-
-    .res-skills-list li strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .res-job {
-      margin-bottom: 24px;
-    }
-
-    .res-job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 4px;
-      gap: 16px;
-    }
-
-    .res-job-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .res-job-company {
-      font-size: 13px;
-      color: var(--teal);
-      margin-bottom: 10px;
-    }
-
-    .res-job-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--muted);
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding-top: 4px;
-    }
-
-    .res-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .res-bullets li {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .res-bullets li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-    }
-
-    .res-edu-degree {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .res-edu-awards {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .res-edu-award {
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 3px;
-      background: rgba(192,96,255,0.08);
-      border: 1px solid rgba(192,96,255,0.2);
-      color: var(--purple);
-    }
-
-    .res-cert-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .res-cert-list li {
-      font-size: 13px;
-      color: var(--muted);
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .res-cert-list li::before {
-      content: '◆';
-      position: absolute;
-      left: 0;
-      color: var(--blue);
-      font-size: 8px;
-      top: 5px;
-    }
+    .res-summary { font-size:13px; color:var(--muted); line-height:1.8; }
+    .res-skills-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .res-skills-list li { font-size:13px; color:var(--muted); line-height:1.6; padding-left:16px; position:relative; }
+    .res-skills-list li::before { content:'›'; position:absolute; left:0; color:var(--teal); font-size:14px; }
+    .res-skills-list li strong { color:var(--text); font-weight:500; }
+    .res-job { margin-bottom:24px; }
+    .res-job-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; gap:16px; }
+    .res-job-title { font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; color:var(--text); }
+    .res-job-company { font-size:13px; color:var(--teal); margin-bottom:10px; }
+    .res-job-date { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); white-space:nowrap; flex-shrink:0; padding-top:4px; }
+    .res-bullets { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .res-bullets li { font-size:13px; color:var(--muted); line-height:1.7; padding-left:16px; position:relative; }
+    .res-bullets li::before { content:'–'; position:absolute; left:0; color:var(--teal); }
+    .res-edu-degree { font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; color:var(--text); margin-bottom:2px; }
+    .res-edu-awards { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .res-edu-award { font-size:11px; padding:3px 10px; border-radius:3px; background:rgba(192,96,255,0.08); border:1px solid rgba(192,96,255,0.2); color:var(--purple); }
+    .res-cert-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .res-cert-list li { font-size:13px; color:var(--muted); padding-left:16px; position:relative; }
+    .res-cert-list li::before { content:'◆'; position:absolute; left:0; color:var(--blue); font-size:8px; top:5px; }
 
     /* ── PAGE SYSTEM ── */
-    .page {
-      display: none;
-      position: relative;
-      z-index: 2;
-      min-height: calc(100vh - 64px);
-      margin-top: 64px;
-    }
-
-    .page.active {
-      display: block;
-      animation: pageIn 0.35s cubic-bezier(0.22,1,0.36,1) forwards;
-    }
-
-    @keyframes pageIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* HOME is special */
-    #page-home {
-      min-height: 100vh;
-      margin-top: 0;
-      padding-top: 64px;
-    }
+    .page { display:none; position:relative; z-index:2; min-height:calc(100vh - 64px); margin-top:64px; }
+    .page.active { display:block; animation:pageIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards; }
+    @keyframes pageIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    #page-home { min-height:100vh; margin-top:0; padding-top:64px; }
 
     /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 64px);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-server-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center center;
-      opacity: 0.75;
-      z-index: 0;
-    }
-
+    .hero { position:relative; min-height:calc(100vh - 64px); display:flex; flex-direction:column; }
+    .hero-bg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.72; z-index:0; }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, rgba(8,13,26,0.97) 0%, rgba(8,13,26,0.85) 40%, rgba(8,13,26,0.50) 70%, rgba(8,13,26,0.30) 100%);
-      z-index: 1;
+      position:absolute; inset:0; z-index:1;
+      background: linear-gradient(105deg, rgba(8,13,26,0.97) 0%, rgba(8,13,26,0.88) 38%, rgba(8,13,26,0.55) 68%, rgba(8,13,26,0.25) 100%);
     }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-      padding: 80px;
-      gap: 24px;
-      max-width: 780px;
+      position:relative; z-index:2; display:flex; flex-direction:column;
+      justify-content:center; flex:1; padding:80px; gap:22px; max-width:800px;
     }
-
     .hero-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: var(--teal);
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500;
+      letter-spacing:0.18em; color:var(--teal); text-transform:uppercase;
+      display:flex; align-items:center; gap:10px;
     }
-
-    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); }
-
-    .hero-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(42px, 5vw, 68px);
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--text);
-    }
-
-    .hero-title .t { color: var(--teal); }
-    .hero-title .p { color: var(--purple); }
-    .hero-title .sm {
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 400;
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-style: italic;
-      display: block;
-      margin-top: 6px;
-    }
-
-    .hero-sub {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 520px;
-    }
-
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; max-width: 600px; }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      padding: 5px 12px;
-      border-radius: 3px;
-      border: 1px solid rgba(0,200,220,0.3);
-      color: var(--teal);
-      background: var(--teal-dim);
-      letter-spacing: 0.04em;
-    }
-
-    .tag.b { border-color: rgba(60,140,255,0.3); color: var(--blue); background: var(--blue-dim); }
-    .tag.p { border-color: rgba(192,96,255,0.3); color: var(--purple); background: var(--purple-dim); }
-    .tag.pk { border-color: rgba(255,80,160,0.3); color: var(--pink); background: var(--pink-dim); }
-    .tag.r { border-color: rgba(255,60,80,0.35); color: var(--red); background: var(--red-dim); font-weight: 500; }
-
-    .hero-btns { display: flex; gap: 14px; align-items: center; }
-
+    .hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--teal); }
+    .hero-title { font-family:'Rajdhani',sans-serif; font-size:clamp(42px,5vw,70px); font-weight:700; line-height:1.05; color:var(--text); }
+    .hero-title .t { color:var(--teal); }
+    .hero-title .p { color:var(--purple); }
+    .hero-title .sm { font-size:clamp(18px,2vw,26px); font-weight:400; color:var(--muted); font-family:'DM Sans',sans-serif; font-style:italic; display:block; margin-top:6px; }
+    .hero-sub { font-size:15px; color:var(--muted); line-height:1.85; max-width:540px; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:8px; max-width:620px; }
+    .tag { font-family:'JetBrains Mono',monospace; font-size:11px; padding:5px 12px; border-radius:3px; border:1px solid rgba(0,200,220,0.3); color:var(--teal); background:var(--teal-dim); letter-spacing:0.04em; }
+    .tag.b { border-color:rgba(60,140,255,0.3); color:var(--blue); background:var(--blue-dim); }
+    .tag.p { border-color:rgba(192,96,255,0.3); color:var(--purple); background:var(--purple-dim); }
+    .tag.pk { border-color:rgba(255,80,160,0.3); color:var(--pink); background:var(--pink-dim); }
+    .tag.r { border-color:rgba(255,60,80,0.35); color:var(--red); background:var(--red-dim); font-weight:500; }
+    .tag.a { border-color:rgba(255,170,0,0.3); color:var(--amber); background:var(--amber-dim); }
+    .hero-btns { display:flex; gap:14px; align-items:center; }
     .btn-primary {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 12px 28px;
-      border-radius: 4px;
-      background: var(--teal);
-      color: var(--bg);
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-block;
+      font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; padding:12px 28px; border-radius:4px; background:var(--teal);
+      color:var(--bg); border:none; cursor:pointer; transition:all 0.2s;
     }
-
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
+    .btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
     .btn-secondary {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 12px 28px;
-      border-radius: 4px;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.15);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-block;
+      font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.08em;
+      text-transform:uppercase; padding:12px 28px; border-radius:4px; background:transparent;
+      color:var(--text); border:1px solid rgba(255,255,255,0.18); cursor:pointer; transition:all 0.2s;
     }
-
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.35); }
+    .btn-secondary:hover { border-color:rgba(255,255,255,0.4); }
 
     /* STATS */
     .stats-bar {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--border);
-      background: rgba(13,21,37,0.9);
+      position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--border); background:rgba(13,21,37,0.95);
     }
-
-    .stat { padding: 28px 32px; border-right: 1px solid var(--border); }
-    .stat:last-child { border-right: none; }
-
-    .stat-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 36px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .stat-num.t { color: var(--teal); }
-    .stat-num.b { color: var(--blue); }
-    .stat-num.p { color: var(--purple); }
-    .stat-num.pk { color: var(--pink); }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .stat { padding:24px 32px; border-right:1px solid var(--border); }
+    .stat:last-child { border-right:none; }
+    .stat-num { font-family:'Rajdhani',sans-serif; font-size:34px; font-weight:700; line-height:1; }
+    .stat-num.t { color:var(--teal); } .stat-num.b { color:var(--blue); }
+    .stat-num.p { color:var(--purple); } .stat-num.pk { color:var(--pink); }
+    .stat-label { font-size:12px; color:var(--muted); margin-top:4px; }
 
     /* BANNERS */
+    .home-banners { position:relative; z-index:2; padding:24px 80px 40px; display:flex; flex-direction:column; gap:12px; }
     .threat-banner {
-      position: relative;
-      z-index: 2;
-      margin: 32px 80px 0;
-      padding: 16px 24px;
-      border: 1px solid rgba(255,60,80,0.2);
-      border-radius: 6px;
-      background: var(--red-dim);
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
+      padding:14px 22px; border:1px solid rgba(255,60,80,0.2); border-radius:6px;
+      background:var(--red-dim); display:flex; align-items:flex-start; gap:14px;
     }
-
-    .threat-indicator { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-top: 2px; }
-
-    .threat-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--red);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.85); }
-    }
-
-    .threat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--red); text-transform: uppercase; }
-    .threat-text { font-size: 14px; color: #cc4455; line-height: 1.6; }
-    .threat-text strong { color: var(--red); font-weight: 500; }
-
+    .threat-indicator { display:flex; align-items:center; gap:8px; flex-shrink:0; padding-top:2px; }
+    .threat-dot { width:7px; height:7px; border-radius:50%; background:var(--red); animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.6; transform:scale(0.85); } }
+    .threat-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--red); text-transform:uppercase; }
+    .threat-text { font-size:14px; color:#cc4455; line-height:1.6; }
+    .threat-text strong { color:var(--red); font-weight:500; }
     .ai-banner {
-      position: relative;
-      z-index: 2;
-      margin: 12px 80px 32px;
-      padding: 14px 24px;
-      border: 1px solid rgba(60,140,255,0.2);
-      border-radius: 6px;
-      background: var(--blue-dim);
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      padding:12px 22px; border:1px solid rgba(60,140,255,0.2); border-radius:6px;
+      background:var(--blue-dim); display:flex; align-items:center; gap:14px;
     }
+    .ai-dot { width:7px; height:7px; border-radius:50%; background:var(--blue); flex-shrink:0; }
+    .ai-text { font-size:13px; color:#6a9ddd; line-height:1.5; }
+    .ai-text strong { color:var(--blue); font-weight:500; }
 
-    .ai-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-    .ai-text { font-size: 13px; color: #6a9ddd; line-height: 1.5; }
-    .ai-text strong { color: var(--blue); font-weight: 500; }
-
-    /* INNER PAGE */
-    .page-inner { max-width: 1200px; margin: 0 auto; padding: 60px 80px; }
+    /* ── PAGE INNER ── */
+    .page-inner { max-width:1160px; margin:0 auto; padding:48px 80px 60px; }
 
     .section-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em;
+      color:var(--muted); text-transform:uppercase; margin-bottom:32px;
+      display:flex; align-items:center; gap:12px;
     }
+    .section-eyebrow::after { content:''; flex:1; height:1px; background:var(--border); }
 
-    .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    /* ── SKILLS ── */
+    .skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+    .skill-group-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; color:rgba(136,146,170,0.45); text-transform:uppercase; margin-bottom:10px; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .chip { font-family:'DM Sans',sans-serif; font-size:12px; padding:4px 10px; border-radius:3px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); color:#aab; }
+    .chip.t { background:rgba(0,200,220,0.07); border-color:rgba(0,200,220,0.18); color:var(--teal); }
+    .chip.b { background:rgba(60,140,255,0.07); border-color:rgba(60,140,255,0.18); color:var(--blue); }
+    .chip.p { background:rgba(192,96,255,0.07); border-color:rgba(192,96,255,0.18); color:var(--purple); }
+    .chip.pk { background:rgba(255,80,160,0.07); border-color:rgba(255,80,160,0.18); color:var(--pink); }
+    .chip.r { background:rgba(255,60,80,0.07); border-color:rgba(255,60,80,0.18); color:var(--red); }
+    .chip.a { background:rgba(255,170,0,0.07); border-color:rgba(255,170,0,0.18); color:var(--amber); }
 
-    /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-    .skill-group-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: rgba(136,146,170,0.5); text-transform: uppercase; margin-bottom: 12px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .chip { font-family: 'DM Sans', sans-serif; font-size: 12px; padding: 4px 10px; border-radius: 3px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); color: #aab; }
-    .chip.t { background: rgba(0,200,220,0.07); border-color: rgba(0,200,220,0.18); color: var(--teal); }
-    .chip.b { background: rgba(60,140,255,0.07); border-color: rgba(60,140,255,0.18); color: var(--blue); }
-    .chip.p { background: rgba(192,96,255,0.07); border-color: rgba(192,96,255,0.18); color: var(--purple); }
-    .chip.pk { background: rgba(255,80,160,0.07); border-color: rgba(255,80,160,0.18); color: var(--pink); }
-    .chip.r { background: rgba(255,60,80,0.07); border-color: rgba(255,60,80,0.18); color: var(--red); }
+    /* ── PORTFOLIO ── */
+    /* Section banner */
+    .portfolio-section {
+      margin-bottom: 56px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .portfolio-section-header {
+      position: relative;
+      padding: 32px 36px;
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    /* Fallback gradients per section if image not found */
+    .portfolio-section-header.cloud {
+      background-color: #0a1628;
+      background-image: linear-gradient(135deg, #0a1628 0%, #0d2040 40%, #082535 100%);
+    }
+    .portfolio-section-header.identity {
+      background-color: #130a28;
+      background-image: linear-gradient(135deg, #130a28 0%, #1e0a3c 40%, #120825 100%);
+    }
+    .portfolio-section-header.security {
+      background-color: #1a0810;
+      background-image: linear-gradient(135deg, #1a0810 0%, #280814 40%, #1a060e 100%);
+    }
+    .portfolio-section-header.infra {
+      background-color: #0a1220;
+      background-image: linear-gradient(135deg, #0a1220 0%, #0d1a30 40%, #081422 100%);
+    }
+    .portfolio-section-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(8,13,26,0.92) 0%, rgba(8,13,26,0.5) 60%, rgba(8,13,26,0.2) 100%);
+      z-index: 1;
+    }
+    .portfolio-section-header-content { position: relative; z-index: 2; }
+    .portfolio-section-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 8px; display: inline-block; padding: 3px 10px;
+      border-radius: 3px;
+    }
+    .portfolio-section-tag.cloud { color: var(--teal); background: rgba(0,200,220,0.12); border: 1px solid rgba(0,200,220,0.25); }
+    .portfolio-section-tag.identity { color: var(--purple); background: rgba(192,96,255,0.12); border: 1px solid rgba(192,96,255,0.25); }
+    .portfolio-section-tag.security { color: var(--red); background: rgba(255,60,80,0.1); border: 1px solid rgba(255,60,80,0.25); }
+    .portfolio-section-tag.infra { color: var(--blue); background: rgba(60,140,255,0.1); border: 1px solid rgba(60,140,255,0.25); }
 
-    /* EXPERIENCE */
-    .exp-item { margin-bottom: 52px; }
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; gap: 24px; }
-    .exp-title { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .exp-org { font-size: 14px; color: var(--teal); display: flex; align-items: center; gap: 10px; }
-    .exp-type { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 3px; border: 1px solid rgba(0,200,220,0.3); color: var(--muted); letter-spacing: 0.08em; }
-    .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; padding-top: 4px; }
-    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .exp-bullets li { font-size: 14px; color: var(--muted); line-height: 1.7; padding-left: 20px; position: relative; }
-    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--teal); }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .etag { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 3px; background: rgba(0,200,220,0.06); border: 1px solid rgba(0,200,220,0.15); color: var(--teal); letter-spacing: 0.04em; }
-    .exp-divider { height: 1px; background: var(--border); margin-bottom: 52px; }
+    .portfolio-section-title {
+      font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 6px;
+    }
+    .portfolio-section-desc { font-size: 13px; color: var(--muted); max-width: 560px; line-height: 1.6; }
 
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-    .edu-degree { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .edu-school { font-size: 14px; color: var(--teal); margin-bottom: 4px; }
-    .edu-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 16px; }
-    .edu-awards { display: flex; flex-wrap: wrap; gap: 8px; }
-    .award-badge { font-size: 12px; padding: 5px 12px; border-radius: 4px; background: rgba(192,96,255,0.08); border: 1px solid rgba(192,96,255,0.2); color: var(--purple); }
-    .cert-list { display: flex; flex-direction: column; gap: 14px; }
-    .cert-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
-    .cert-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .cert-dot.t { background: var(--teal); }
-    .cert-dot.b { background: var(--blue); }
-    .cert-dot.p { background: var(--purple); }
-    .cert-dot.pk { background: var(--pink); }
+    .portfolio-section-body { padding: 28px 36px; display: flex; flex-direction: column; gap: 20px; background: rgba(13,21,37,0.6); }
+
+    .portfolio-item {
+      padding: 20px 22px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(8,13,26,0.5);
+      transition: border-color 0.2s;
+    }
+    .portfolio-item:hover { border-color: rgba(0,200,220,0.15); }
+    .portfolio-item-title { font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; color:var(--text); margin-bottom:10px; }
+    .portfolio-bullets { list-style:none; display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+    .portfolio-bullets li { font-size:13px; color:var(--muted); line-height:1.7; padding-left:18px; position:relative; }
+    .portfolio-bullets li::before { content:'–'; position:absolute; left:0; color:var(--teal); }
+    .portfolio-bullets li strong { color:var(--text); font-weight:500; }
+    .portfolio-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .ptag { font-family:'JetBrains Mono',monospace; font-size:10px; padding:3px 9px; border-radius:3px; background:rgba(0,200,220,0.06); border:1px solid rgba(0,200,220,0.15); color:var(--teal); letter-spacing:0.04em; }
+    .ptag.p { background:rgba(192,96,255,0.06); border-color:rgba(192,96,255,0.15); color:var(--purple); }
+    .ptag.r { background:rgba(255,60,80,0.06); border-color:rgba(255,60,80,0.15); color:var(--red); }
+    .ptag.b { background:rgba(60,140,255,0.06); border-color:rgba(60,140,255,0.15); color:var(--blue); }
+    .ptag.a { background:rgba(255,170,0,0.06); border-color:rgba(255,170,0,0.15); color:var(--amber); }
+
+    /* ── EXPERIENCE ── */
+    .exp-item { margin-bottom:48px; }
+    .exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:24px; }
+    .exp-title { font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .exp-org { font-size:14px; color:var(--teal); display:flex; align-items:center; gap:10px; }
+    .exp-type { font-family:'JetBrains Mono',monospace; font-size:10px; padding:3px 8px; border-radius:3px; border:1px solid rgba(0,200,220,0.3); color:var(--muted); letter-spacing:0.08em; }
+    .exp-date { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); white-space:nowrap; padding-top:4px; }
+    .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:18px; }
+    .exp-bullets li { font-size:14px; color:var(--muted); line-height:1.75; padding-left:20px; position:relative; }
+    .exp-bullets li::before { content:'–'; position:absolute; left:0; color:var(--teal); }
+    .exp-bullets li strong { color:var(--text); font-weight:500; }
+    .exp-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .etag { font-family:'JetBrains Mono',monospace; font-size:10px; padding:3px 10px; border-radius:3px; background:rgba(0,200,220,0.06); border:1px solid rgba(0,200,220,0.15); color:var(--teal); letter-spacing:0.04em; }
+    .exp-divider { height:1px; background:var(--border); margin-bottom:48px; }
+
+    /* ── ABOUT ── */
+    .about-hero {
+      position: relative; height: 280px; border-radius: 8px; overflow: hidden;
+      margin-bottom: 48px;
+      background: linear-gradient(135deg, #130a28 0%, #080d1a 60%);
+    }
+    .about-hero-img { position:absolute; inset:0; background-size:cover; background-position:center top; opacity:0.55; }
+    .about-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,13,26,0.9) 0%, rgba(8,13,26,0.4) 100%); }
+    .about-hero-content { position:relative; z-index:2; padding:40px 48px; height:100%; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+    .about-hero-name { font-family:'Rajdhani',sans-serif; font-size:36px; font-weight:700; color:var(--text); }
+    .about-hero-role { font-size:14px; color:var(--teal); }
+    .about-hero-tagline { font-size:13px; color:var(--muted); max-width:420px; line-height:1.7; font-style:italic; }
+
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:48px; }
+    .edu-degree { font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .edu-school { font-size:14px; color:var(--teal); margin-bottom:4px; }
+    .edu-meta { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:14px; }
+    .edu-awards { display:flex; flex-wrap:wrap; gap:8px; }
+    .award-badge { font-size:12px; padding:5px 12px; border-radius:4px; background:rgba(192,96,255,0.08); border:1px solid rgba(192,96,255,0.2); color:var(--purple); }
+    .cert-list { display:flex; flex-direction:column; gap:12px; }
+    .cert-item { display:flex; align-items:center; gap:12px; font-size:14px; color:var(--muted); }
+    .cert-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .cert-dot.t { background:var(--teal); } .cert-dot.b { background:var(--blue); }
+    .cert-dot.p { background:var(--purple); } .cert-dot.pk { background:var(--pink); }
+    .cert-dot.a { background:var(--amber); }
 
     /* BADGES */
-    .badges-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-top: 20px; }
-    .badge-card { background: rgba(13,21,37,0.8); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; transition: border-color 0.2s; }
-    .badge-card:hover { border-color: rgba(0,200,220,0.3); }
-    .badge-img { width: 72px; height: 72px; object-fit: contain; border-radius: 8px; }
-    .badge-name { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .badge-issuer { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-    .badge-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--teal); }
-    .badge-ms { background: rgba(0,114,198,0.08); border: 1px solid rgba(0,114,198,0.2); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
-    .ms-logo { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: #0078d4; width: 72px; text-align: center; }
-    .ms-certs { display: flex; flex-direction: column; gap: 4px; }
-    .ms-cert-item { font-size: 12px; color: var(--muted); }
+    .badges-grid { display:flex; flex-wrap:wrap; gap:20px; margin-top:20px; }
+    .badge-card { background:rgba(13,21,37,0.8); border:1px solid var(--border); border-radius:10px; padding:18px 22px; display:flex; align-items:center; gap:16px; transition:border-color 0.2s; }
+    .badge-card:hover { border-color:rgba(0,200,220,0.3); }
+    .badge-img { width:68px; height:68px; object-fit:contain; border-radius:6px; }
+    .badge-name { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:600; color:var(--text); margin-bottom:2px; }
+    .badge-issuer { font-size:12px; color:var(--muted); margin-bottom:4px; }
+    .badge-date { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--teal); }
+    .badge-ms { background:rgba(0,114,198,0.08); border:1px solid rgba(0,114,198,0.2); border-radius:10px; padding:18px 22px; display:flex; align-items:center; gap:16px; }
+    .ms-logo { font-family:'Rajdhani',sans-serif; font-size:26px; font-weight:700; color:#0078d4; width:68px; text-align:center; }
+    .ms-certs { display:flex; flex-direction:column; gap:4px; }
+    .ms-cert-item { font-size:12px; color:var(--muted); }
 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
-    .contact-card { background: rgba(13,21,37,0.8); border: 1px solid var(--border); border-radius: 8px; padding: 28px 32px; transition: border-color 0.2s; }
-    .contact-card:hover { border-color: rgba(0,200,220,0.3); }
-    .contact-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
-    .contact-value { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 600; color: var(--teal); text-decoration: none; transition: color 0.2s; display: block; }
-    .contact-value:hover { color: var(--text); }
+    /* ── CONTACT ── */
+    .contact-intro { font-size:15px; color:var(--muted); max-width:500px; margin-bottom:36px; line-height:1.8; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .contact-card { background:rgba(13,21,37,0.8); border:1px solid var(--border); border-radius:8px; padding:26px 30px; transition:border-color 0.2s; }
+    .contact-card:hover { border-color:rgba(0,200,220,0.3); }
+    .contact-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.14em; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
+    .contact-value { font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:600; color:var(--teal); text-decoration:none; transition:color 0.2s; display:block; cursor:pointer; }
+    .contact-value:hover { color:var(--text); }
 
-    /* FOOTER */
-    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 24px 80px; display: flex; align-items: center; justify-content: space-between; }
-    .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--teal); letter-spacing: 0.05em; }
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; cursor: pointer; }
-    .footer-links a:hover { color: var(--teal); }
-    .footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(136,146,170,0.4); letter-spacing: 0.06em; }
+    /* ── FOOTER ── */
+    footer { position:relative; z-index:2; border-top:1px solid var(--border); padding:22px 80px; display:flex; align-items:center; justify-content:space-between; }
+    .footer-logo { font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700; color:var(--teal); letter-spacing:0.05em; }
+    .footer-links { display:flex; gap:24px; list-style:none; }
+    .footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; cursor:pointer; }
+    .footer-links a:hover { color:var(--teal); }
+    .footer-copy { font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(136,146,170,0.35); letter-spacing:0.06em; }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .anim { opacity: 0; }
-    .anim.go { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    .anim { opacity:0; }
+    .anim.go { animation:fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
 
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .hero-content, .page-inner { padding: 40px 24px; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .threat-banner, .ai-banner { margin-left: 24px; margin-right: 24px; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .exp-header { flex-direction: column; gap: 8px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
-      .resume-modal-body { padding: 28px 24px; }
-      .resume-modal-header { padding: 16px 20px; }
+    @media (max-width:900px) {
+      nav { padding:0 20px; } .nav-links { display:none; }
+      .hero-content, .page-inner { padding:40px 24px; }
+      .skills-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-bar { grid-template-columns:repeat(2,1fr); }
+      .home-banners { padding:20px 24px 32px; }
+      .about-grid, .contact-grid { grid-template-columns:1fr; }
+      .exp-header { flex-direction:column; gap:8px; }
+      footer { flex-direction:column; gap:14px; text-align:center; padding:20px 24px; }
+      .portfolio-section-header { min-height:100px; padding:24px; }
+      .portfolio-section-body { padding:20px; }
+      .resume-modal-body { padding:24px 20px; }
+      .resume-modal-header { padding:14px 18px; }
+      .about-hero { height:200px; }
+      .about-hero-content { padding:24px 28px; }
     }
   </style>
 </head>
 <body>
-
 <div class="grid-bg"></div>
 
 <!-- ══ RESUME MODAL ══ -->
@@ -779,41 +443,36 @@
       <div class="resume-modal-title">resume // karolina o'connor</div>
       <div class="resume-modal-actions">
         <a href="Karolina_OConnor_Cloud_Admin_Resume_v3_Formatted.docx" download class="modal-download-btn">↓ download .docx</a>
-        <button class="modal-close" onclick="closeResume()" aria-label="Close">✕</button>
+        <button class="modal-close" onclick="closeResume()">✕</button>
       </div>
     </div>
     <div class="resume-modal-body">
-
       <div class="res-name">Karolina O'Connor</div>
       <div class="res-contact">
         Severn, MD &nbsp;•&nbsp; (410) 643-8419 &nbsp;•&nbsp;
         <a href="mailto:karolina@nerdycyberchick.com">karolina@nerdycyberchick.com</a> &nbsp;•&nbsp;
         <a href="https://linkedin.com/in/karolina-o-connor" target="_blank">linkedin.com/in/karolina-o-connor</a>
       </div>
-      <div class="res-title">Cloud Administrator / Microsoft 365 Administrator</div>
-
+      <div class="res-role">Cloud & Identity Engineer / Microsoft 365 Administrator</div>
       <div class="res-section">
         <div class="res-section-label">Professional Summary</div>
-        <p class="res-summary">Microsoft 365 / Cloud Administrator with 7+ years of experience owning day-to-day operations and security posture across ~30 client environments. Hands-on in Entra ID identity administration, Conditional Access and MFA troubleshooting, Exchange Online mail flow, Intune/MDM policy enforcement, and Microsoft Defender alert investigation. Known for independently resolving complex, multi-layered issues and translating security requirements into practical policies and user-ready change.</p>
+        <p class="res-summary">Microsoft 365 and Cloud Infrastructure specialist with 7+ years managing security posture, identity, and operations across ~30 client environments. Deep hands-on experience in Entra ID, Conditional Access, MFA troubleshooting, Exchange Online mail flow, Intune/MDM enforcement, and Microsoft Defender investigation. Known for resolving complex, multi-layered issues end-to-end and translating security requirements into practical, user-ready policy.</p>
       </div>
-
       <div class="res-section">
         <div class="res-section-label">Core Skills</div>
         <ul class="res-skills-list">
-          <li><strong>Microsoft 365 Administration:</strong> Microsoft 365 admin center, Exchange admin center, Teams admin center, SharePoint/OneDrive administration</li>
-          <li><strong>Identity & Access:</strong> Entra ID, Conditional Access, MFA, sign-in/session troubleshooting, hybrid identity support</li>
-          <li><strong>Security Operations:</strong> Microsoft Defender for Office 365 alerting & investigations, SOC alert triage, EDR rule tuning</li>
-          <li><strong>Email & Mail Flow:</strong> connectors, transport/mail flow rules, deliverability troubleshooting, DMARC/DKIM/SPF</li>
-          <li><strong>Endpoint & MDM:</strong> Microsoft Intune (Windows & macOS), compliance policies, security baselines, app deployment scripts; Apple Business Manager</li>
-          <li><strong>Automation:</strong> PowerShell (Exchange/Graph), scripting for administration and reporting</li>
-          <li><strong>Networking & Perimeter:</strong> SonicWall VPN/firewall administration, segmentation and troubleshooting</li>
-          <li><strong>Collaboration & Governance:</strong> external sharing/guest access governance, SharePoint permission design</li>
+          <li><strong>Identity & Access Management:</strong> Entra ID, Conditional Access, MFA, sign-in/session troubleshooting, hybrid identity, SSPR</li>
+          <li><strong>Microsoft 365 Administration:</strong> M365 admin center, Exchange Online, Teams, SharePoint/OneDrive, licensing</li>
+          <li><strong>Security Operations:</strong> Microsoft Defender for Office 365, SOC alert triage, EDR rule tuning, threat investigation & remediation</li>
+          <li><strong>Email & Mail Flow:</strong> connectors, transport rules, deliverability troubleshooting, DMARC/DKIM/SPF implementation</li>
+          <li><strong>Endpoint & MDM:</strong> Microsoft Intune (Windows & macOS), compliance policies, security baselines, Apple Business Manager</li>
+          <li><strong>Automation:</strong> PowerShell (Exchange/Graph API), scripting for administration and reporting</li>
+          <li><strong>Networking & Perimeter:</strong> SonicWall VPN/firewall, segmentation, structured cabling, LAN/WAN troubleshooting</li>
+          <li><strong>Governance:</strong> SharePoint permissions, external sharing, guest access governance, data lifecycle</li>
         </ul>
       </div>
-
       <div class="res-section">
         <div class="res-section-label">Professional Experience</div>
-
         <div class="res-job">
           <div class="res-job-header">
             <div class="res-job-title">Senior Systems & Infrastructure Engineer</div>
@@ -821,50 +480,46 @@
           </div>
           <div class="res-job-company">Smart Computing Solutions, Inc. (MSP) — Severn, MD</div>
           <ul class="res-bullets">
-            <li>Own and manage Microsoft 365 and cloud operations across ~30 client organizations, accountable for stability, security posture, and end-to-end issue resolution.</li>
-            <li>Build and maintain Entra ID identity configurations including Conditional Access; troubleshoot MFA, sign-in failures, and session/access issues.</li>
-            <li>Administer Exchange Online including connectors, mail flow rules, and delivery troubleshooting; support hybrid identity scenarios as clients transition to cloud-first.</li>
-            <li>Investigate and respond to security alerts within Microsoft Defender for Office 365 and triage SOC escalations.</li>
-            <li>Manage Intune/MDM policies and deployments across Windows and macOS; develop scripts and rules for app delivery and configuration enforcement.</li>
-            <li>Drive email security hardening: DMARC/DKIM/SPF implementation and remediation; phishing/spoofing response coordination.</li>
-            <li>Design and administer SharePoint/OneDrive permissions and external sharing governance; execute SharePoint file migrations.</li>
-            <li>Administer SonicWall environments (VPNs, firewall rules) and perform network-level troubleshooting as needed.</li>
-            <li>Introduced AI capabilities in a small Microsoft 365 environment and developed a Copilot readiness/adoption plan for a nonprofit (~40 users).</li>
+            <li>Own Microsoft 365 and cloud operations across <strong>~30 client organizations</strong>, accountable for stability, security posture, and end-to-end issue resolution.</li>
+            <li>Build and maintain Entra ID configurations including Conditional Access; troubleshoot MFA, sign-in failures, and session/access issues across multiple tenants.</li>
+            <li>Administer Exchange Online connectors, mail flow rules, and delivery troubleshooting; support hybrid identity as clients transition cloud-first.</li>
+            <li>Investigate and respond to Microsoft Defender for Office 365 security alerts; perform SOC triage and threat remediation end-to-end.</li>
+            <li>Manage Intune/MDM policies across Windows and macOS; develop scripts for app delivery and configuration enforcement.</li>
+            <li>Drive email security hardening: DMARC/DKIM/SPF implementation, phishing/spoofing response.</li>
+            <li>Design SharePoint/OneDrive permissions, external sharing governance, and execute file migrations.</li>
+            <li>Administer SonicWall environments (VPN, firewall rules); network-level troubleshooting and structured cabling projects.</li>
+            <li>Deployed Copilot 365 in a small M365 environment; developed Copilot readiness/adoption plan for a nonprofit (~40 users).</li>
           </ul>
         </div>
-
-        <div class="res-job">
+        <div class="res-job" style="margin-top:20px;">
           <div class="res-job-header">
             <div class="res-job-title">Systems Engineer</div>
             <div class="res-job-date">Aug 2018 – Sep 2020</div>
           </div>
-          <div class="res-job-company">Livanta, LLC — Annapolis Junction, MD</div>
+          <div class="res-job-company">Livanta, LLC — Annapolis Junction, MD (Healthcare / Federal)</div>
           <ul class="res-bullets">
             <li>Administered Windows Server, Active Directory, and core infrastructure in a regulated healthcare environment.</li>
-            <li>Managed virtualization platforms (Hyper-V/VMware), patching cycles, upgrades, and backup/DR operations.</li>
+            <li>Managed Hyper-V/VMware virtualization, patching cycles, and backup/DR operations.</li>
           </ul>
         </div>
       </div>
-
       <div class="res-section">
         <div class="res-section-label">Education</div>
-        <div class="res-edu-degree">Bachelor of Science in Cybersecurity</div>
-        <div style="font-size:13px; color:var(--teal); margin-bottom:4px;">Full Sail University</div>
+        <div class="res-edu-degree">Bachelor of Science in Cybersecurity — Full Sail University</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">2020 – 2023</div>
         <div class="res-edu-awards">
           <span class="res-edu-award">🏆 Valedictorian</span>
           <span class="res-edu-award">⭐ Master's Achievement Award</span>
         </div>
       </div>
-
       <div class="res-section">
         <div class="res-section-label">Certifications</div>
         <ul class="res-cert-list">
-          <li>Kaseya Certified Expert (IT Glue)</li>
+          <li>Kaseya Certified Expert — IT Glue (Oct 2024, expires Oct 2026)</li>
           <li>Kaseya 365 Endpoint / OPS Certifications</li>
-          <li>Microsoft Certified — MCSA, MCITP: Enterprise Administrator, MCP, MCTS (multiple)</li>
+          <li>Microsoft Certified — MCSA: Windows Server, MCITP: Enterprise Administrator, MCP, MCTS (multiple)</li>
         </ul>
       </div>
-
     </div>
   </div>
 </div>
@@ -885,26 +540,26 @@
 <!-- ══ HOME ══ -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-server-bg" id="heroBg"></div>
+    <div class="hero-bg" id="heroBg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow anim">Senior Infrastructure &amp; Systems Engineer</div>
+      <div class="hero-eyebrow anim">Cloud &amp; Identity Engineer · MSP Lead · Annapolis, MD</div>
       <h1 class="hero-title anim">
         I <span class="t">Build</span> &amp;<br>
         <span class="p">Secure</span> Networks.<br>
         <span class="sm">Then document them too.</span>
       </h1>
-      <p class="hero-sub anim">Lead engineer for 30+ organizations across commercial, education, and nonprofit sectors. Microsoft 365, Azure/Entra ID, SonicWall, macOS, structured cabling — if it runs on a network, I've touched it.</p>
+      <p class="hero-sub anim">Senior engineer managing cloud infrastructure, identity, and security across 30+ organizations. Microsoft 365, Entra ID, Intune, SonicWall — if it runs on a network, I own it end to end.</p>
       <div class="hero-tags anim">
         <span class="tag">Microsoft 365</span>
-        <span class="tag">Intune + ABM</span>
-        <span class="tag b">Azure / Entra ID</span>
+        <span class="tag">Entra ID</span>
+        <span class="tag">Conditional Access</span>
+        <span class="tag b">Intune + ABM</span>
         <span class="tag b">Copilot 365</span>
-        <span class="tag p">SonicWall + Secure Edge</span>
+        <span class="tag p">SonicWall</span>
         <span class="tag p">macOS</span>
-        <span class="tag pk">Structured Cabling</span>
-        <span class="tag pk">Project Lead</span>
         <span class="tag r">Threat Hunter</span>
+        <span class="tag a">DMARC / DKIM / SPF</span>
       </div>
       <div class="hero-btns anim">
         <button onclick="showPage('portfolio')" class="btn-primary">view my work</button>
@@ -912,24 +567,22 @@
       </div>
     </div>
   </div>
-
   <div class="stats-bar">
     <div class="stat"><div class="stat-num t">30+</div><div class="stat-label">client organizations</div></div>
     <div class="stat"><div class="stat-num b">7+</div><div class="stat-label">years experience</div></div>
     <div class="stat"><div class="stat-num p">100+</div><div class="stat-label">environments managed</div></div>
-    <div class="stat"><div class="stat-num pk">BS</div><div class="stat-label">cybersecurity, valedictorian</div></div>
+    <div class="stat"><div class="stat-num pk">BS</div><div class="stat-label">cybersecurity · valedictorian</div></div>
   </div>
-
-  <div class="threat-banner">
-    <div class="threat-indicator"><div class="threat-dot"></div><div class="threat-label">Active</div></div>
-    <p class="threat-text"><strong>Threat investigation &amp; remediation</strong> — I dig in, trace the path, contain the damage, and clean up the mess. End to end.</p>
+  <div class="home-banners">
+    <div class="threat-banner">
+      <div class="threat-indicator"><div class="threat-dot"></div><div class="threat-label">Active</div></div>
+      <p class="threat-text"><strong>Threat investigation &amp; remediation</strong> — I dig in, trace the path, contain the damage, and clean up the mess. End to end, every time.</p>
+    </div>
+    <div class="ai-banner">
+      <div class="ai-dot"></div>
+      <p class="ai-text"><strong>Microsoft Copilot 365</strong> — deployed in production and building readiness plans for nonprofit environments.</p>
+    </div>
   </div>
-
-  <div class="ai-banner">
-    <div class="ai-dot"></div>
-    <p class="ai-text"><strong>Microsoft Copilot 365</strong> — licensed and deployed (small scale) and developing Copilot readiness planning.</p>
-  </div>
-
   <footer>
     <div class="footer-logo">nerdy cyber chick</div>
     <ul class="footer-links">
@@ -949,34 +602,52 @@
       <div class="skill-group">
         <div class="skill-group-label">Cloud &amp; Identity</div>
         <div class="chips">
-          <span class="chip t">Microsoft 365</span><span class="chip t">Azure / Entra ID</span>
-          <span class="chip t">Intune</span><span class="chip t">Apple Business Manager</span>
-          <span class="chip b">Copilot 365</span><span class="chip t">Exchange Online</span>
-          <span class="chip t">SharePoint</span>
+          <span class="chip t">Microsoft 365</span><span class="chip t">Entra ID</span>
+          <span class="chip t">Conditional Access</span><span class="chip t">Exchange Online</span>
+          <span class="chip t">SharePoint / OneDrive</span><span class="chip b">Copilot 365</span>
+          <span class="chip t">Teams Admin</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Endpoint &amp; MDM</div>
+        <div class="chips">
+          <span class="chip b">Microsoft Intune</span><span class="chip b">Apple Business Manager</span>
+          <span class="chip b">Windows Autopilot</span><span class="chip b">Compliance Policies</span>
+          <span class="chip b">Security Baselines</span><span class="chip b">macOS MDM</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-label">Security &amp; Threat</div>
         <div class="chips">
           <span class="chip r">Threat Hunting</span><span class="chip r">Incident Remediation</span>
-          <span class="chip r">SOC Triage</span><span class="chip r">EDR</span>
-          <span class="chip r">Email Security</span>
+          <span class="chip r">SOC Triage</span><span class="chip r">EDR / Datto AV</span>
+          <span class="chip r">DMARC/DKIM/SPF</span><span class="chip r">Email Security</span>
+          <span class="chip r">Defender for O365</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label">Networking</div>
+        <div class="skill-group-label">Networking &amp; Infra</div>
         <div class="chips">
           <span class="chip p">SonicWall</span><span class="chip p">Secure Edge VPN</span>
           <span class="chip p">LAN / WAN</span><span class="chip p">Switching</span>
           <span class="chip p">Wireless</span><span class="chip pk">Structured Cabling</span>
+          <span class="chip">Windows Server</span><span class="chip">Hyper-V</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-label">Operations</div>
+        <div class="skill-group-label">Automation</div>
+        <div class="chips">
+          <span class="chip a">PowerShell</span><span class="chip a">Graph API</span>
+          <span class="chip a">Exchange Online PS</span><span class="chip a">Bash / Shell</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">MSP Operations</div>
         <div class="chips">
           <span class="chip b">Autotask PSA</span><span class="chip b">Datto RMM</span>
-          <span class="chip b">ITGlue</span><span class="chip b">Capital Planning</span>
-          <span class="chip b">SOPs</span><span class="chip b">Project Lead</span>
+          <span class="chip b">IT Glue</span><span class="chip b">RocketCyber</span>
+          <span class="chip b">Capital Planning</span><span class="chip b">SOPs</span>
+          <span class="chip b">Project Lead</span>
         </div>
       </div>
     </div>
@@ -996,35 +667,163 @@
 <div id="page-portfolio" class="page">
   <div class="page-inner">
     <div class="section-eyebrow">portfolio</div>
-    <div class="exp-item">
-      <div class="exp-title">Conditional Access + MFA Troubleshooting</div>
-      <ul class="exp-bullets">
-        <li>Built and maintained Conditional Access policies across multiple tenants</li>
-        <li>Resolved MFA/sign-in/session failures with minimal user disruption</li>
-        <li>Improved security posture while keeping usability practical</li>
-      </ul>
-      <div class="exp-tags"><span class="etag">Entra ID</span><span class="etag">Conditional Access</span><span class="etag">MFA</span></div>
+
+    <!-- SECTION 1: Cloud & M365 -->
+    <div class="portfolio-section">
+      <div class="portfolio-section-header cloud" id="ph-cloud">
+        <div class="portfolio-section-header-content">
+          <span class="portfolio-section-tag cloud">Cloud &amp; M365 Administration</span>
+          <div class="portfolio-section-title">Microsoft 365 &amp; Cloud Operations</div>
+          <div class="portfolio-section-desc">Day-to-day ownership of M365 tenants — Exchange, SharePoint, Teams, licensing, mail flow, and everything in between across ~30 client organizations.</div>
+        </div>
+      </div>
+      <div class="portfolio-section-body">
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Exchange Online Mail Flow &amp; Domain Protection</div>
+          <ul class="portfolio-bullets">
+            <li>Configured connectors and transport rules for complex multi-tenant routing scenarios</li>
+            <li>Resolved deliverability failures, NDR analysis, and hybrid mail flow issues</li>
+            <li><strong>Implemented DMARC/DKIM/SPF</strong> from scratch across dozens of domains; remediated misconfigured records causing spoofing and spam failures</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag">Exchange Online</span><span class="ptag">Transport Rules</span><span class="ptag">DMARC/DKIM/SPF</span><span class="ptag a">Deliverability</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">SharePoint &amp; OneDrive Governance</div>
+          <ul class="portfolio-bullets">
+            <li>Designed and administered SharePoint permissions and external sharing policies across education and nonprofit tenants</li>
+            <li>Executed large-scale file migrations using PnP PowerShell and SPMT</li>
+            <li>Resolved SharePoint storage crises and OneDrive sync/licensing issues at scale</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag">SharePoint</span><span class="ptag">OneDrive</span><span class="ptag">PnP PowerShell</span><span class="ptag">Governance</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Microsoft Copilot 365 Deployment &amp; Readiness</div>
+          <ul class="portfolio-bullets">
+            <li>Deployed Copilot 365 in a live M365 environment (12 users); managed licensing and onboarding</li>
+            <li>Developed a Copilot readiness and adoption plan for a nonprofit (~40 users), including data governance and sensitivity label readiness</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag b">Copilot 365</span><span class="ptag">M365 Licensing</span><span class="ptag">Readiness Planning</span></div>
+        </div>
+      </div>
     </div>
-    <div class="exp-divider"></div>
-    <div class="exp-item">
-      <div class="exp-title">Intune (Windows + macOS) Policy &amp; App Deployment</div>
-      <ul class="exp-bullets">
-        <li>Managed compliance and configuration policies at scale</li>
-        <li>Deployed applications and enforced security baselines</li>
-        <li>Supported Apple Business Manager workflows for macOS environments</li>
-      </ul>
-      <div class="exp-tags"><span class="etag">Intune</span><span class="etag">Windows</span><span class="etag">macOS</span><span class="etag">ABM</span></div>
+
+    <!-- SECTION 2: Identity & Access -->
+    <div class="portfolio-section">
+      <div class="portfolio-section-header identity" id="ph-identity">
+        <div class="portfolio-section-header-content">
+          <span class="portfolio-section-tag identity">Identity &amp; Access Management</span>
+          <div class="portfolio-section-title">Entra ID &amp; Zero Trust Identity</div>
+          <div class="portfolio-section-desc">Hands-on Entra ID administration across hybrid and cloud-native environments — Conditional Access, MFA, sign-in troubleshooting, and identity lifecycle management.</div>
+        </div>
+      </div>
+      <div class="portfolio-section-body">
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Conditional Access Policy Design &amp; Troubleshooting</div>
+          <ul class="portfolio-bullets">
+            <li>Built and maintained Conditional Access policies across multiple client tenants with varying compliance requirements</li>
+            <li>Resolved MFA registration failures, legacy auth blocks, and sign-in/session policy conflicts</li>
+            <li><strong>Balanced security posture with usability</strong> — minimized user disruption while enforcing Zero Trust access controls</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag p">Entra ID</span><span class="ptag p">Conditional Access</span><span class="ptag p">MFA</span><span class="ptag p">Zero Trust</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Intune MDM — Windows &amp; macOS Policy Deployment</div>
+          <ul class="portfolio-bullets">
+            <li>Managed compliance and device configuration policies for Windows and macOS endpoints across 30+ environments</li>
+            <li>Deployed apps, enforced security baselines, and built enrollment workflows using Apple Business Manager and Windows Autopilot</li>
+            <li>Troubleshot Intune enrollment failures, policy conflicts, and compliance reporting gaps</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag p">Intune</span><span class="ptag">Windows</span><span class="ptag">macOS</span><span class="ptag p">ABM</span><span class="ptag">Autopilot</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Hybrid Identity &amp; Active Directory Migrations</div>
+          <ul class="portfolio-bullets">
+            <li>Supported hybrid AD environments during cloud-first migrations; resolved Kerberos and Group Policy failures</li>
+            <li>Performed AD metadata cleanup, DNS decommission, and domain controller migrations</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag p">Active Directory</span><span class="ptag p">Hybrid Identity</span><span class="ptag">DNS</span><span class="ptag">Kerberos</span></div>
+        </div>
+      </div>
     </div>
-    <div class="exp-divider"></div>
-    <div class="exp-item">
-      <div class="exp-title">Exchange Online Mail Flow + Domain Protection</div>
-      <ul class="exp-bullets">
-        <li>Configured connectors and transport rules for complex routing scenarios</li>
-        <li>Resolved deliverability and routing issues across client tenants</li>
-        <li>Implemented DMARC/DKIM/SPF and remediated misconfigured records</li>
-      </ul>
-      <div class="exp-tags"><span class="etag">Exchange Online</span><span class="etag">Connectors</span><span class="etag">DMARC/DKIM/SPF</span></div>
+
+    <!-- SECTION 3: Security & Threat -->
+    <div class="portfolio-section">
+      <div class="portfolio-section-header security" id="ph-security">
+        <div class="portfolio-section-header-content">
+          <span class="portfolio-section-tag security">Security &amp; Threat Response</span>
+          <div class="portfolio-section-title">Threat Hunting &amp; Incident Remediation</div>
+          <div class="portfolio-section-desc">End-to-end security incident response — from initial alert to full remediation. I trace the path, contain the damage, and close the gap.</div>
+        </div>
+      </div>
+      <div class="portfolio-section-body">
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Credential Spray &amp; Email Compromise Response</div>
+          <ul class="portfolio-bullets">
+            <li>Investigated and contained a credential spray attack on a client email environment; traced attacker activity through Defender audit logs</li>
+            <li>Remediated compromised accounts, reset sessions, and implemented targeted Conditional Access to prevent recurrence</li>
+            <li>Coordinated DKIM/DMARC hardening and domain cleanup following the incident</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag r">Incident Response</span><span class="ptag r">Defender for O365</span><span class="ptag r">BEC</span><span class="ptag r">DMARC</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">EDR Tuning &amp; SOC Alert Management</div>
+          <ul class="portfolio-bullets">
+            <li>Tuned EDR alert suppression rules to reduce false-positive ticket noise across MSP environments</li>
+            <li>Triaged RocketCyber and Datto EDR alerts; escalated and contained confirmed threats</li>
+            <li>Isolated compromised endpoints and coordinated remediation across client sites</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag r">EDR</span><span class="ptag r">SOC Triage</span><span class="ptag r">RocketCyber</span><span class="ptag r">Datto AV</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Email Security Hardening (Multi-Client)</div>
+          <ul class="portfolio-bullets">
+            <li>Deployed DMARC/DKIM/SPF from scratch across dozens of domains in GoDaddy, Cloudflare, and other DNS providers</li>
+            <li>Identified and removed orphaned MX records, legacy selectors, and conflicting SPF includes</li>
+            <li>Reduced spoofing exposure and improved deliverability across all treated environments</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag r">DMARC</span><span class="ptag r">DKIM</span><span class="ptag r">SPF</span><span class="ptag">Cloudflare</span><span class="ptag">DNS</span></div>
+        </div>
+      </div>
     </div>
+
+    <!-- SECTION 4: Infrastructure -->
+    <div class="portfolio-section">
+      <div class="portfolio-section-header infra" id="ph-infra">
+        <div class="portfolio-section-header-content">
+          <span class="portfolio-section-tag infra">Infrastructure &amp; Networking</span>
+          <div class="portfolio-section-title">Network Builds &amp; Infrastructure Projects</div>
+          <div class="portfolio-section-desc">Physical and logical infrastructure — SonicWall, structured cabling, server builds, and everything that makes the network actually run.</div>
+        </div>
+      </div>
+      <div class="portfolio-section-body">
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">SonicWall TZ470 RMA &amp; Network Rebuild</div>
+          <ul class="portfolio-bullets">
+            <li>Managed SonicWall TZ470 RMA swap, firmware upgrade, and full network cutover with minimal downtime</li>
+            <li>Reconfigured VPN tunnels, firewall rules, and VLAN segmentation post-swap</li>
+            <li>Validated connectivity and resolved subnet routing issues following the migration</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag b">SonicWall</span><span class="ptag b">VPN</span><span class="ptag b">Firewall</span><span class="ptag b">VLAN</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Hyper-V / NTP Infrastructure Remediation</div>
+          <ul class="portfolio-bullets">
+            <li>Diagnosed and resolved Hyper-V time sync / NTP misconfiguration causing nightly Kerberos authentication failures</li>
+            <li>Reconfigured W32Time service hierarchy on domain controllers; eliminated recurring event log errors</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag b">Hyper-V</span><span class="ptag b">Windows Server</span><span class="ptag b">NTP</span><span class="ptag b">Kerberos</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-item-title">Structured Cabling &amp; Site Buildouts</div>
+          <ul class="portfolio-bullets">
+            <li>Delivered structured cabling, patch panel termination, and switch infrastructure for commercial office buildouts</li>
+            <li>Designed and documented network topology for MSP client environments</li>
+          </ul>
+          <div class="portfolio-tags"><span class="ptag b">Structured Cabling</span><span class="ptag b">LAN/WAN</span><span class="ptag b">Network Design</span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <footer>
     <div class="footer-logo">nerdy cyber chick</div>
@@ -1050,16 +849,17 @@
         <div class="exp-date">March 2023 – Present</div>
       </div>
       <ul class="exp-bullets">
-        <li>Design, build, and operate Microsoft 365 and Azure environments from greenfield through production.</li>
-        <li>Lead engineer for approximately 30 client organizations across commercial, education, and nonprofit sectors.</li>
-        <li>Administer Windows and macOS environments, including ABM + Intune workflows.</li>
-        <li>Deliver infrastructure projects: network builds, wireless deployments, server upgrades, cabling.</li>
-        <li>Perform threat investigation and incident remediation end-to-end.</li>
-        <li>Develop SOPs and documentation (ITGlue / NetworkGlue).</li>
+        <li>Own and operate Microsoft 365 and cloud infrastructure across <strong>~30 client organizations</strong> — accountable for stability, security posture, and end-to-end resolution.</li>
+        <li>Administer Entra ID identity configurations: Conditional Access, MFA, sign-in troubleshooting, and hybrid identity support.</li>
+        <li>Manage Exchange Online mail flow, connectors, transport rules, and deliverability; implement DMARC/DKIM/SPF across client domains.</li>
+        <li>Perform threat investigation and incident remediation end-to-end — from Defender alert to full containment and cleanup.</li>
+        <li>Deploy and manage Intune/MDM policies for Windows and macOS; Apple Business Manager and Autopilot workflows.</li>
+        <li>Administer SonicWall environments, VPN tunnels, and firewall rules; deliver structured cabling and network buildouts.</li>
+        <li>Develop SOPs, runbooks, and documentation (IT Glue / NetworkGlue) for 100+ managed environments.</li>
       </ul>
       <div class="exp-tags">
-        <span class="etag">M365</span><span class="etag">Azure</span><span class="etag">Intune</span>
-        <span class="etag">macOS + ABM</span><span class="etag">SonicWall</span><span class="etag">Threat Hunting</span>
+        <span class="etag">M365</span><span class="etag">Entra ID</span><span class="etag">Intune</span>
+        <span class="etag">macOS + ABM</span><span class="etag">SonicWall</span><span class="etag">Threat Hunting</span><span class="etag">DMARC/DKIM/SPF</span>
       </div>
     </div>
     <div class="exp-divider"></div>
@@ -1072,11 +872,11 @@
         <div class="exp-date">August 2018 – September 2020</div>
       </div>
       <ul class="exp-bullets">
-        <li>Administered LAN/WAN infrastructure, Windows Server, Active Directory, and backups.</li>
-        <li>Managed server upgrades, patching, and virtualization (Hyper-V / VMware).</li>
-        <li>Supported disaster recovery planning and internal IT operations.</li>
+        <li>Administered LAN/WAN infrastructure, Windows Server, Active Directory, and enterprise backups in a regulated healthcare environment.</li>
+        <li>Managed virtualization platforms (Hyper-V/VMware), patching cycles, and disaster recovery operations.</li>
+        <li>Supported internal IT operations and infrastructure upgrades for a federal healthcare contractor.</li>
       </ul>
-      <div class="exp-tags"><span class="etag">Windows Server</span><span class="etag">Active Directory</span><span class="etag">Hyper-V</span><span class="etag">VMware</span></div>
+      <div class="exp-tags"><span class="etag">Windows Server</span><span class="etag">Active Directory</span><span class="etag">Hyper-V</span><span class="etag">VMware</span><span class="etag">Healthcare IT</span></div>
     </div>
   </div>
   <footer>
@@ -1093,6 +893,15 @@
 <!-- ══ ABOUT ══ -->
 <div id="page-about" class="page">
   <div class="page-inner">
+    <div class="about-hero">
+      <div class="about-hero-img" id="aboutHeroBg"></div>
+      <div class="about-hero-overlay"></div>
+      <div class="about-hero-content">
+        <div class="about-hero-name">Karolina O'Connor</div>
+        <div class="about-hero-role">Cloud &amp; Identity Engineer · Senior MSP Lead</div>
+        <div class="about-hero-tagline">I build secure infrastructure, own hard problems end to end, and actually document what I do. 30+ clients, 7+ years, zero shortcuts.</div>
+      </div>
+    </div>
     <div class="section-eyebrow">education</div>
     <div class="about-grid">
       <div>
@@ -1105,29 +914,30 @@
         </div>
       </div>
       <div>
-        <div class="section-eyebrow" style="margin-bottom:20px;">certifications</div>
+        <div class="section-eyebrow" style="margin-bottom:16px;">certifications</div>
         <div class="cert-list">
           <div class="cert-item"><div class="cert-dot t"></div><div>MCSA: Windows Server</div></div>
           <div class="cert-item"><div class="cert-dot b"></div><div>Microsoft Certified Professional (MCP)</div></div>
           <div class="cert-item"><div class="cert-dot p"></div><div>MCITP: Enterprise Administrator</div></div>
           <div class="cert-item"><div class="cert-dot pk"></div><div>MCTS: Windows Server (multiple)</div></div>
-          <div class="cert-item"><div class="cert-dot t"></div><div>Kaseya Certified (IT Glue / K365)</div></div>
+          <div class="cert-item"><div class="cert-dot a"></div><div>Kaseya Certified Expert — IT Glue</div></div>
+          <div class="cert-item"><div class="cert-dot b"></div><div>Kaseya 365 Endpoint / OPS</div></div>
         </div>
       </div>
     </div>
-    <div class="section-eyebrow" style="margin-top:48px;">certifications &amp; badges</div>
+    <div class="section-eyebrow" style="margin-top:40px;">certifications &amp; badges</div>
     <div class="badges-grid">
       <div class="badge-card">
         <img id="badgeItgl" src="ITG_Certified_Expert.png" alt="IT Glue Certified Expert" class="badge-img" />
-        <div class="badge-info">
+        <div>
           <div class="badge-name">Certified Expert — IT Glue</div>
           <div class="badge-issuer">Kaseya University</div>
           <div class="badge-date">Issued Oct 2024 · Expires Oct 2026</div>
         </div>
       </div>
       <div class="badge-card">
-        <img id="badgeKca" src="K365%20Endpoint%20KCA.png" alt="Kaseya 365 Endpoint Certified Administrator" class="badge-img" />
-        <div class="badge-info">
+        <img id="badgeKca" src="K365%20Endpoint%20KCA.png" alt="Kaseya 365 Endpoint KCA" class="badge-img" />
+        <div>
           <div class="badge-name">Certified Administrator — Kaseya 365 Endpoint</div>
           <div class="badge-issuer">Kaseya University</div>
           <div class="badge-date">Issued Oct 2025 · Level 2</div>
@@ -1160,7 +970,7 @@
 <div id="page-contact" class="page">
   <div class="page-inner">
     <div class="section-eyebrow">contact</div>
-    <p style="color:var(--muted); font-size:15px; max-width:520px; margin-bottom:40px; line-height:1.8;">Available for consulting engagements, contract work, and conversations about infrastructure, M365, or security. Let's talk.</p>
+    <p class="contact-intro">Available for cloud infrastructure, M365 administration, identity engineering, and security consulting engagements. Let's talk.</p>
     <div class="contact-grid">
       <div class="contact-card">
         <div class="contact-label">Email</div>
@@ -1172,7 +982,7 @@
       </div>
       <div class="contact-card">
         <div class="contact-label">Resume</div>
-        <a onclick="openResume()" class="contact-value" style="cursor:pointer;">View on page</a>
+        <span class="contact-value" onclick="openResume()">View on page</span>
       </div>
       <div class="contact-card">
         <div class="contact-label">Website</div>
@@ -1194,58 +1004,79 @@
 <script>
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + name);
-    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.classList.toggle('active', a.dataset.page === name);
-    });
+    const t = document.getElementById('page-' + name);
+    if (t) { t.classList.add('active'); window.scrollTo(0,0); }
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
   }
 
   function openResume() {
     document.getElementById('resumeModal').classList.add('open');
     document.body.classList.add('modal-open');
   }
-
   function closeResume() {
     document.getElementById('resumeModal').classList.remove('open');
     document.body.classList.remove('modal-open');
   }
-
   function closeResumeIfBackdrop(e) {
     if (e.target === document.getElementById('resumeModal')) closeResume();
   }
-
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeResume(); });
 
   window.addEventListener('DOMContentLoaded', () => {
-    const anims = document.querySelectorAll('.anim');
-    anims.forEach((el, i) => setTimeout(() => el.classList.add('go'), 100 + i * 140));
+    document.querySelectorAll('.anim').forEach((el,i) => setTimeout(() => el.classList.add('go'), 100 + i*130));
 
+    // Hero background
     const hero = document.getElementById('heroBg');
-    const candidates = ['CloudHero.jpeg','CloudHero.jpg','assets/hero/background-main.jpg','background-main.jpg','herogirl2.png','hero_girl2.png'];
-    let set = false;
-    const tryNext = (idx) => {
-      if (idx >= candidates.length || set) return;
+    const heroImgs = ['CloudHero.jpeg','CloudHero.jpg','assets/hero/background-main.jpg','background-main.jpg'];
+    let heroSet = false;
+    const tryHero = i => {
+      if (i >= heroImgs.length || heroSet) return;
       const img = new Image();
-      img.onload = () => { hero.style.backgroundImage = `url('${candidates[idx]}')`; set = true; };
-      img.onerror = () => tryNext(idx + 1);
-      img.src = candidates[idx];
+      img.onload = () => { hero.style.backgroundImage = `url('${heroImgs[i]}')`; heroSet = true; };
+      img.onerror = () => tryHero(i+1);
+      img.src = heroImgs[i];
     };
-    tryNext(0);
+    tryHero(0);
 
+    // About page hero image — swap 'about-hero.jpg' with whatever you want
+    const aboutBg = document.getElementById('aboutHeroBg');
+    const aboutImgs = ['about-hero.jpg','about-hero.jpeg','about-hero.png'];
+    let aboutSet = false;
+    const tryAbout = i => {
+      if (i >= aboutImgs.length || aboutSet) return;
+      const img = new Image();
+      img.onload = () => { aboutBg.style.backgroundImage = `url('${aboutImgs[i]}')`; aboutSet = true; };
+      img.onerror = () => tryAbout(i+1);
+      img.src = aboutImgs[i];
+    };
+    tryAbout(0);
+
+    // Portfolio section images — swap these with your Adobe Stock finds
+    const sections = [
+      { id: 'ph-cloud',    files: ['section-cloud.jpg','section-cloud.jpeg','section-cloud.png'] },
+      { id: 'ph-identity', files: ['section-identity.jpg','section-identity.jpeg','section-identity.png'] },
+      { id: 'ph-security', files: ['section-security.jpg','section-security.jpeg','section-security.png'] },
+      { id: 'ph-infra',   files: ['section-infra.jpg','section-infra.jpeg','section-infra.png'] },
+    ];
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (!el) return;
+      let idx = 0;
+      const tryImg = i => {
+        if (i >= s.files.length) return;
+        const img = new Image();
+        img.onload = () => { el.style.backgroundImage = `url('${s.files[i]}')`; };
+        img.onerror = () => tryImg(i+1);
+        img.src = s.files[i];
+      };
+      tryImg(0);
+    });
+
+    // Badge fallbacks
     const itgl = document.getElementById('badgeItgl');
-    if (itgl) {
-      const opts = ['ITG_Certified_Expert.png','ITG_Certified Expert.png','itgl_certified_expert.png'];
-      let i = 0;
-      itgl.onerror = () => { i++; if (i < opts.length) itgl.src = opts[i]; };
-    }
-
+    if (itgl) { const o=['ITG_Certified_Expert.png','ITG_Certified Expert.png','itgl_certified_expert.png']; let i=0; itgl.onerror=()=>{i++;if(i<o.length)itgl.src=o[i];}; }
     const kca = document.getElementById('badgeKca');
-    if (kca) {
-      const opts = ['K365%20Endpoint%20KCA.png','K365 Endpoint KCA.png','k365_endpoint_kca.png'];
-      let i = 0;
-      kca.onerror = () => { i++; if (i < opts.length) kca.src = opts[i]; };
-    }
+    if (kca) { const o=['K365%20Endpoint%20KCA.png','K365 Endpoint KCA.png','k365_endpoint_kca.png']; let i=0; kca.onerror=()=>{i++;if(i<o.length)kca.src=o[i];}; }
   });
 </script>
 </body>
