@@ -26,7 +26,7 @@
       --bg2: #0d1525;
       --bg3: #111c2e;
       --text: #f0f0f8;
-      --muted: #8892aa;
+      --muted: #a0aabf;
       --border: rgba(0,200,220,0.12);
     }
 
@@ -115,7 +115,7 @@
       background-image: url('CyberBrainGirl.png');
       background-size: cover;
       background-position: right center;
-      opacity: 0.07;
+      opacity: 0.18;
       z-index: 0;
       pointer-events: none;
     }
@@ -189,7 +189,8 @@
     }
     .hero-content {
       position:relative; z-index:2; display:flex; flex-direction:column;
-      justify-content:center; flex:1; padding:80px; gap:22px; max-width:800px;
+      justify-content:flex-start; flex:1; padding:60px 80px 80px; gap:22px; max-width:800px;
+      padding-top: max(60px, 8vh);
     }
     .hero-eyebrow {
       font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500;
@@ -210,19 +211,20 @@
     .tag.pk { border-color:rgba(255,80,160,0.3); color:var(--pink); background:var(--pink-dim); }
     .tag.r { border-color:rgba(255,60,80,0.35); color:var(--red); background:var(--red-dim); font-weight:500; }
     .tag.a { border-color:rgba(255,170,0,0.3); color:var(--amber); background:var(--amber-dim); }
-    .hero-btns { display:flex; gap:14px; align-items:center; }
+    .hero-btns { display:flex; gap:16px; align-items:center; }
     .btn-primary {
-      font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.1em;
-      text-transform:uppercase; padding:12px 28px; border-radius:4px; background:var(--teal);
+      font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; letter-spacing:0.12em;
+      text-transform:uppercase; padding:16px 36px; border-radius:4px; background:var(--teal);
       color:var(--bg); border:none; cursor:pointer; transition:all 0.2s;
+      box-shadow: 0 0 24px rgba(0,200,220,0.4);
     }
-    .btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
+    .btn-primary:hover { opacity:0.88; transform:translateY(-2px); box-shadow: 0 0 36px rgba(0,200,220,0.6); }
     .btn-secondary {
-      font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.08em;
-      text-transform:uppercase; padding:12px 28px; border-radius:4px; background:transparent;
-      color:var(--text); border:1px solid rgba(255,255,255,0.18); cursor:pointer; transition:all 0.2s;
+      font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; padding:15px 36px; border-radius:4px; background:transparent;
+      color:var(--text); border:2px solid rgba(255,255,255,0.3); cursor:pointer; transition:all 0.2s;
     }
-    .btn-secondary:hover { border-color:rgba(255,255,255,0.4); }
+    .btn-secondary:hover { border-color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.05); }
 
     /* STATS */
     .stats-bar {
@@ -376,16 +378,73 @@
 
     /* ── ABOUT ── */
     .about-hero {
-      position: relative; height: 280px; border-radius: 8px; overflow: hidden;
+      position: relative; height: 320px; border-radius: 8px; overflow: hidden;
       margin-bottom: 48px;
       background: linear-gradient(135deg, #130a28 0%, #080d1a 60%);
     }
-    .about-hero-img { position:absolute; inset:0; background-size:cover; background-position:center center; opacity:0.82; filter:saturate(1.2); }
-    .about-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,13,26,0.88) 0%, rgba(8,13,26,0.55) 45%, rgba(8,13,26,0.2) 100%); }
-    .about-hero-content { position:relative; z-index:2; padding:40px 48px; height:100%; display:flex; flex-direction:column; justify-content:center; gap:12px; }
-    .about-hero-name { font-family:'Rajdhani',sans-serif; font-size:36px; font-weight:700; color:var(--text); }
-    .about-hero-role { font-size:14px; color:var(--teal); }
-    .about-hero-tagline { font-size:13px; color:var(--muted); max-width:420px; line-height:1.7; font-style:italic; }
+    .about-hero-img {
+      position:absolute; inset:0;
+      background-image: url('CyberBrainGirl.png');
+      background-size:cover; background-position:center center;
+      opacity:0.75; filter:saturate(1.2);
+    }
+    .about-hero-overlay { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,13,26,0.85) 0%, rgba(8,13,26,0.4) 50%, rgba(8,13,26,0.1) 100%); }
+    .about-hero-content { position:relative; z-index:2; padding:48px 56px; height:100%; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+    .about-hero-name { font-family:'Rajdhani',sans-serif; font-size:42px; font-weight:700; color:var(--text); text-shadow: 0 0 30px rgba(0,0,0,0.8); }
+    .about-hero-role { font-size:15px; color:var(--teal); text-shadow: 0 0 20px rgba(0,200,220,0.4); }
+    .about-hero-tagline { font-size:14px; color:#b8c4d8; max-width:460px; line-height:1.7; font-style:italic; }
+
+    /* ── PORTFOLIO JUMP NAV ── */
+    .portfolio-jump-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .portfolio-jump-nav.visible { display: flex; }
+    .jump-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .jump-link-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateX(8px);
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: rgba(8,13,26,0.9);
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    .jump-link:hover .jump-link-label { opacity: 1; transform: translateX(0); }
+    .jump-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid var(--muted);
+      background: transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .jump-link:hover .jump-dot,
+    .jump-link.active .jump-dot { border-color: var(--teal); background: var(--teal); box-shadow: 0 0 8px var(--teal); }
+    .jump-link.identity .jump-dot { border-color: rgba(192,96,255,0.5); }
+    .jump-link.identity:hover .jump-dot, .jump-link.identity.active .jump-dot { border-color: var(--purple); background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+    .jump-link.security .jump-dot { border-color: rgba(255,60,80,0.5); }
+    .jump-link.security:hover .jump-dot, .jump-link.security.active .jump-dot { border-color: var(--red); background: var(--red); box-shadow: 0 0 8px var(--red); }
+    .jump-link.infra .jump-dot { border-color: rgba(60,140,255,0.5); }
+    .jump-link.infra:hover .jump-dot, .jump-link.infra.active .jump-dot { border-color: var(--blue); background: var(--blue); box-shadow: 0 0 8px var(--blue); }
 
     .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:48px; }
     .edu-degree { font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:var(--text); margin-bottom:4px; }
@@ -541,6 +600,26 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- ══ PORTFOLIO JUMP NAV ══ -->
+<div class="portfolio-jump-nav" id="portfolioJumpNav">
+  <a class="jump-link cloud active" onclick="jumpTo('ph-cloud')">
+    <span class="jump-link-label">Cloud & M365</span>
+    <span class="jump-dot"></span>
+  </a>
+  <a class="jump-link identity" onclick="jumpTo('ph-identity')">
+    <span class="jump-link-label">Identity & Access</span>
+    <span class="jump-dot"></span>
+  </a>
+  <a class="jump-link security" onclick="jumpTo('ph-security')">
+    <span class="jump-link-label">Security & Threat</span>
+    <span class="jump-dot"></span>
+  </a>
+  <a class="jump-link infra" onclick="jumpTo('ph-infra')">
+    <span class="jump-link-label">Infrastructure</span>
+    <span class="jump-dot"></span>
+  </a>
 </div>
 
 <!-- ══ NAV ══ -->
@@ -913,7 +992,7 @@
 <div id="page-about" class="page">
   <div class="page-inner">
     <div class="about-hero">
-      <div class="about-hero-img" id="aboutHeroBg"></div>
+      <div class="about-hero-img"></div>
       <div class="about-hero-overlay"></div>
       <div class="about-hero-content">
         <div class="about-hero-name">Karolina O'Connor</div>
@@ -1026,7 +1105,36 @@
     const t = document.getElementById('page-' + name);
     if (t) { t.classList.add('active'); window.scrollTo(0,0); }
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
+    // show/hide portfolio jump nav
+    const jumpNav = document.getElementById('portfolioJumpNav');
+    if (jumpNav) jumpNav.classList.toggle('visible', name === 'portfolio');
   }
+
+  function jumpTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // update active dot
+    document.querySelectorAll('.jump-link').forEach(l => l.classList.remove('active'));
+    const map = { 'ph-cloud': 'cloud', 'ph-identity': 'identity', 'ph-security': 'security', 'ph-infra': 'infra' };
+    const cls = map[id];
+    if (cls) document.querySelector('.jump-link.' + cls)?.classList.add('active');
+  }
+
+  // Update active jump dot on scroll
+  function updateJumpOnScroll() {
+    const sections = ['ph-cloud','ph-identity','ph-security','ph-infra'];
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 200) current = id;
+    });
+    const map = { 'ph-cloud': 'cloud', 'ph-identity': 'identity', 'ph-security': 'security', 'ph-infra': 'infra' };
+    document.querySelectorAll('.jump-link').forEach(l => l.classList.remove('active'));
+    document.querySelector('.jump-link.' + map[current])?.classList.add('active');
+  }
+
+  document.getElementById('page-portfolio')?.addEventListener('scroll', updateJumpOnScroll);
+  window.addEventListener('scroll', updateJumpOnScroll);
 
   function openResume() {
     document.getElementById('resumeModal').classList.add('open');
@@ -1057,25 +1165,14 @@
     };
     tryHero(0);
 
-    // About page hero image — swap 'about-hero.jpg' with whatever you want
-    const aboutBg = document.getElementById('aboutHeroBg');
-    const aboutImgs = ['CyberBrainGirl.png','about-hero.jpg','about-hero.jpeg','about-hero.png'];
-    let aboutSet = false;
-    const tryAbout = i => {
-      if (i >= aboutImgs.length || aboutSet) return;
-      const img = new Image();
-      img.onload = () => { aboutBg.style.backgroundImage = `url('${aboutImgs[i]}')`; aboutSet = true; };
-      img.onerror = () => tryAbout(i+1);
-      img.src = aboutImgs[i];
-    };
-    tryAbout(0);
+    // About image is handled via CSS directly
 
     // Portfolio section images — swap these with your Adobe Stock finds
     const sections = [
-      { id: 'ph-cloud',    files: ['section-cloud.jpg','section-cloud.jpeg','section-cloud.png'] },
-      { id: 'ph-identity', files: ['section-identity.jpg','section-identity.jpeg','section-identity.png'] },
-      { id: 'ph-security', files: ['section-security.jpg','section-security.jpeg','section-security.png'] },
-      { id: 'ph-infra',   files: ['section-infra.jpg','section-infra.jpeg','section-infra.png'] },
+      { id: 'ph-cloud',    files: ['section-cloud.jpeg','section-cloud.png'] },
+      { id: 'ph-identity', files: ['section-identity.jpeg','section-identity.jpeg','section-identity.png'] },
+      { id: 'ph-security', files: ['section-security.jpeg','section-security.jpeg','section-security.png'] },
+      { id: 'ph-infra',   files: ['section-infra.jpeg','section-infra.jpeg','section-infra.png'] },
     ];
     sections.forEach(s => {
       const el = document.getElementById(s.id);
