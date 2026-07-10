@@ -1,0 +1,52 @@
+Datto RMM: 8x8 Work Update Component (134 endpoints)
+=====================================================
+
+FILES
+-----
+- Update-8x8Work.ps1        Component script (install/upgrade)
+- Test-8x8WorkVersion.ps1   Optional monitor script (version compliance)
+
+PREREQUISITES
+-------------
+1. Download the current 8x8 Work MSI (64-bit) from 8x8 support portal.
+   EXE installers cannot be silently deployed at scale.
+2. Confirm target machines were originally installed with MSI (machine-wide).
+   Per-user EXE installs in %LocalAppData% require a different approach.
+
+CREATE THE COMPONENT IN DATTO RMM
+---------------------------------
+1. Components > New Component > PowerShell (Windows)
+2. Paste the contents of Update-8x8Work.ps1 into the script editor
+3. Attach the MSI file to the component package
+4. Set run context: LocalSystem
+5. Set timeout: 30 minutes (or higher for slow disks)
+6. Add component variables:
+   - TargetVersion (string)  Example: 8.3.1
+   - ForceReinstall (boolean/string) Optional; set true to reinstall anyway
+
+ROLL OUT TO 134 MACHINES
+------------------------
+Recommended pattern:
+
+A) Compliance monitor (optional, runs daily)
+   - Create a monitor component using Test-8x8WorkVersion.ps1
+   - Set TargetVersion to your required build
+   - Alert when exit code = 1 (outdated/missing)
+
+B) Remediation job
+   - Create a one-time or scheduled job with Update-8x8Work.ps1
+   - Target the 134-device site/filter
+   - Stagger if needed (Datto job batching / maintenance windows)
+   - Review job output STATUS lines and logs on failures
+
+LOG LOCATIONS ON ENDPOINTS
+--------------------------
+- C:\ProgramData\DattoRMM\8x8Work\8x8-update-*.log
+- C:\ProgramData\DattoRMM\8x8Work\msiexec-*.log
+
+TROUBLESHOOTING
+---------------
+- Exit 1603 / 1618: another installer or 8x8 process running; script stops 8x8 first
+- Exit 3010: success, reboot required (usually safe to defer with /norestart)
+- "No MSI attached": verify MSI is attached to component, not just uploaded elsewhere
+- Version still old after install: endpoint may have per-user EXE install instead of MSI
